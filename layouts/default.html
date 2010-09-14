@@ -17,6 +17,7 @@
 
       <ul> 
         <% home_page.children.each_with_index do |page, idx| %> 
+          <% unless page[:title] == nil  %>
         <li>
           <%= link_to(page[:title], page.reps[0]) %>
           <ul <%= 'class="last"' if idx == home_page.children.size - 1%> > 
@@ -26,6 +27,7 @@
                 </li>
               <% end %>
             </ul>
+            <% end %>
           </li> 
 
         <% end %> 
