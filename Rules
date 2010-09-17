@@ -12,11 +12,13 @@
 
 compile '/stylesheet/' do
   # don’t filter or layout
+  filter :relativize_paths, :type => :css
 end
 
 compile '*' do
   filter :erb
   layout 'default'
+  filter :relativize_paths, :type => :html
 end
 
 route '/stylesheet/' do
