@@ -1,0 +1,9 @@
+%h2 Search for a room
+%form{ :action => "#", :id => "search-room", :method => "get"}
+  %fieldset#search-room-fields
+    .field
+      %label{ :for => "search"}
+      %input{ :type => "text", :length => "16"}
+
+  .buttons
+    %input{ :class => "submit", :type => "submit", :value => "Search"}

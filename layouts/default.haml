@@ -1,0 +1,40 @@
+!!! XML
+!!! 1.1
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => "en" }
+  %head
+    %meta{:charset => "utf-8"} 
+    %title
+      Avatar Hotel - 
+      = @item[:title]
+    %link{ :rel => "stylesheet", :type => "text/css", :href => "/style.css", :media => "screen" }
+    %meta{ :name => "generator", :content => "nanoc 3.1.5" }
+  
+  %body
+    #header
+      %h1
+        - home_page = @items.find { |i| i.reps[0].path == '/' }  
+        = link_to(home_page[:title], home_page.reps[0]) 
+    #centeredmenu
+      %ul 
+        - home_page.children.each_with_index do |page, idx| 
+          - unless page[:title] == nil  
+            %li
+              = link_to(page[:title], page.reps[0])
+              - last = idx == home_page.children.size - 1 ? "last" : nil
+              %ul{ :class => last  }
+                - page.children.each do |sub_page| 
+                  %li
+                    = link_to(sub_page[:title], sub_page.reps[0]) 
+
+    .colmask.threecol
+      .colmid
+        .colleft
+          .col1
+            = yield
+          
+          .col2
+            = render 'left'
+          .col3
+            = render 'right'
+    #footer
+      = render 'footer'

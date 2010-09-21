@@ -15,8 +15,20 @@ compile '/stylesheet/' do
   filter :relativize_paths, :type => :css
 end
 
+compile '/images/*/' do
+
+end
+
 compile '*' do
-  filter :erb
+  case item[:extension]
+    when 'md'
+      filter :rdiscount
+    when 'haml'
+      filter :haml
+    else
+      filter :erb
+  end
+  
   layout 'default'
   filter :relativize_paths, :type => :html
 end
@@ -25,8 +37,11 @@ route '/stylesheet/' do
   '/style.css'
 end
 
+route '/images/*/' do
+  item.identifier.chop + "." + item[:extension]
+end
+
 route '*' do
   item.identifier + 'index.html'
 end
-
-layout '*', :erb
+layout '*', :haml
