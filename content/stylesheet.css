@@ -7,10 +7,11 @@ body {
 	padding:0;
 	border:0;			/* This removes the border around the viewport in old versions of IE */
 	width:100%;
-	background:#fff;
+	background:black;
 	min-width:600px;		/* Minimum width of layout - remove line if not required */
 					/* The min-width property does not work in old versions of Internet Explorer */
 	font-size:90%;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 a {
 	color:#369;
@@ -27,9 +28,6 @@ h1, h2, h3 {
 p {
 	margin:.4em 0 .8em 0;
 	padding:0;
-}
-img {
-	margin:10px 0 5px;
 }
 #ads img {
 	display:block;
@@ -171,7 +169,6 @@ img {
    padding:0;
    border-bottom:1px solid #000; /* black line below menu */
    width:100%;
-   font-family:Verdana, Geneva, sans-serif; /* Menu font */
    font-size:90%; /* Menu text size */
    z-index:1000; /* This makes the dropdown menus appear above the page content below */
    position:relative;
@@ -268,3 +265,8 @@ img {
    display:block; /* Show the sub menus */
 }
 
+/* New styles JCF */
+
+#address {
+  background-color: #ddd;
+}

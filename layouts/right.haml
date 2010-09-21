@@ -2,8 +2,69 @@
 %form{ :action => "#", :id => "search-room", :method => "get"}
   %fieldset#search-room-fields
     .field
-      %label{ :for => "search"}
-      %input{ :type => "text", :length => "16"}
+      %label{ :for => "nr_people"} People
+      %input{ :id => 'nr_people', :type => "text", :length => "4"}
+    .field
+      %label{ :for => 'day'} Date
+      %select{ :name => 'day'}
+        %option 1
+        %option 2
+        %option 3
+        %option 4
+        %option 5
+        %option 6
+        %option 7
+        %option 8
+        %option 9
+        %option 10
+        %option 11
+        %option 12
+        %option 13
+        %option 14
+        %option 15
+        %option 16
+        %option 17
+        %option 18
+        %option 19
+        %option 20
+        %option 21
+        %option 22
+        %option 23
+        %option 24
+        %option 25
+        %option 26
+        %option 27
+        %option 28
+        %option 29
+        %option 30
+        %option 31
+      %select{ :name => 'month'}
+        %option January
+        %option February
+        %option March
+        %option April
+        %option May
+        %option June
+        %option Juli
+        %option August
+        %option September
+        %option October
+        %option November
+        %option December
+      %select{ :name => 'year'}
+        %option 2010
+        %option 2011
+        %option 2012
+    .field
+      %label{ :for => "nr_nights"} Nights
+      %select{ :name => 'nr_nights'}
+        %option 1
+        %option 2
+        %option 3
+        %option 4
+        %option 5
+        %option 6
+        %option 7
 
   .buttons
     %input{ :class => "submit", :type => "submit", :value => "Search"}
