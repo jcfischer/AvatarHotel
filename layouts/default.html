@@ -38,19 +38,18 @@
         <div class="colleft">
           <div class="col1">
             <h2>Main Title</h2>
-      <%= yield %>
-  </div>
-  <div class="col2">
-    <h2>Left Column</h2>
+            <%= yield %>
+          </div>
+          <div class="col2">
+            <%= render 'left' %>
+          </div>
+          <div class="col3">
+            And here is the right column
+          </div>
+        </div>  
+      </div>
     </div>
-    <div class="col3">
-      And here is the right column
-    </div>
-    </div>  
-    </div>
-  </div>
     <div id="footer">
-      &copy; 2010 - Group 2, UoL MscIT, Programming the Internet
-    </div>
+      <%= render 'footer' %>    </div>
   </body>
 </html>
