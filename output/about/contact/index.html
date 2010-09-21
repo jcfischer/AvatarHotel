@@ -9,6 +9,9 @@
     </title>
     <link href='../../style.css' media='screen' rel='stylesheet' type='text/css' />
     <meta content='nanoc 3.1.5' name='generator' />
+    <!-- Groupwork for the Course "Programming the Internet" -->
+    <!-- University of Liverpool, 2010 -->
+    <!-- Ali Mikati & Jens-Christian Fischer -->
   </head>
   <body>
     <div id='header'>
@@ -88,7 +91,40 @@
       <div class='colmid'>
         <div class='colleft'>
           <div class='col1'>
-            Hi, I'm a the contact page
+            <h2>Contact Form</h2>
+            <form action='#' id='contact' method='post'>
+              <fieldset id='contact-fields'>
+                <div class='field'>
+                  <label for='name'>Name</label>
+                  <input id='name' name='name' size='30' type='text' />
+                </div>
+                <div class='field'>
+                  <label for='email'>Email</label>
+                  <input id='email' name='email' size='30' type='text' />
+                </div>
+                <div class='field'>
+                  <label for='type'>Type</label>
+                  <select id='type' name='type'>
+                    <option>Reservation</option>
+                    <option>Cancelation</option>
+                    <option>Praise</option>
+                    <option>Complaint</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class='field'>
+                  <label for='subject'>Subject</label>
+                  <input id='subject' name='subject' size='40' type='text' />
+                </div>
+                <div class='field'>
+                  <label for='body'>Message</label>
+                  <textarea cols='80' id='body' name='body' rows='10'></textarea>
+                </div>
+              </fieldset>
+              <div class='buttons'>
+                <input class='submit' type='submit' value='Submit' />
+              </div>
+            </form>
           </div>
           <div class='col2'>
             <img src='../../images/habbo.png' />
