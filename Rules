@@ -16,7 +16,12 @@ compile '/stylesheet/' do
 end
 
 compile '/images/*/' do
+end
+compile '/gallery/*/' do
+end
 
+compile '/javascript/*/' do
+  nil
 end
 
 compile '*' do
@@ -38,6 +43,14 @@ route '/stylesheet/' do
 end
 
 route '/images/*/' do
+  item.identifier.chop + "." + item[:extension]
+end
+
+route '/gallery/*/' do
+  item.identifier.chop + "." + item[:extension]
+end
+
+route '/javascript/*/' do
   item.identifier.chop + "." + item[:extension]
 end
 

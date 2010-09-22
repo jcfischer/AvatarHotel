@@ -1,0 +1,9 @@
+%h2 The Gallery
+%p
+  A selection of our finest roomes for your enjoyment
+%ul
+  - @item.children.each do |img| 
+    %li
+      %a{ :href => img.path }
+        = img.path
+
