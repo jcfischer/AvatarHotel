@@ -3,10 +3,10 @@
   %fieldset#search-room-fields
     .field
       %label{ :for => "nr_people"} People
-      %input{ :id => 'nr_people', :type => "text", :length => "4"}
+      %input{ :id => 'nr_people', :type => "text", :size => "4"}
     .field
       %label{ :for => 'day'} Date
-      %select{ :name => 'day'}
+      %select{ :name => 'day', :id => 'day'}
         %option 1
         %option 2
         %option 3
@@ -38,7 +38,7 @@
         %option 29
         %option 30
         %option 31
-      %select{ :name => 'month'}
+      %select{ :name => 'month', :id => 'month'}
         %option January
         %option February
         %option March
@@ -51,13 +51,13 @@
         %option October
         %option November
         %option December
-      %select{ :name => 'year'}
+      %select{ :name => 'year', :id => 'year'}
         %option 2010
         %option 2011
         %option 2012
     .field
       %label{ :for => "nr_nights"} Nights
-      %select{ :name => 'nr_nights'}
+      %select{ :name => 'nr_nights', :id => "nr_nights"}
         %option 1
         %option 2
         %option 3

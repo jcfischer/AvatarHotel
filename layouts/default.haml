@@ -2,7 +2,7 @@
 !!! 1.1
 %html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => "en" }
   %head
-    %meta{:charset => "utf-8"} 
+    %meta{ :'http-equiv' => "content-type", :content => "text/html; charset=UTF-8" } 
     %title
       Avatar Hotel - 
       = @item[:title]
@@ -33,7 +33,6 @@
         .colleft
           .col1
             = yield
-          
           .col2
             = render 'left'
           .col3
