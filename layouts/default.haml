@@ -32,14 +32,11 @@
                       %li
                         = link_to(sub_page[:title], sub_page.reps[0]) 
 
-      .colmask.threecol
-        .colmid
-          .colleft
-            .col1
-              = yield
-            .col2
-              = render 'left'
-            .col3
-              = render 'right'
+      #content
+        #main_column
+          = yield
+        #right_column
+          = render 'right'
+      .clear
       #footer
         = render 'footer'
