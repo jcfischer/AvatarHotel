@@ -1,9 +1,12 @@
 %h2 The Gallery
 %p
   A selection of our finest rooms for your enjoyment
-%ul
-  - @item.children.each do |img| 
-    %li
-      %a{ :href => img.path }
-        = img.path
+.image
+  %img{:src => relative_path_to('/gallery/11925.jpg'), :alt => "" }
+.thumbnails
+  %ul.gallery
+    - @item.children.each do |img| 
+      %li
+        %a{ :href => img.path }
+          %img{ :src => img.path }
 

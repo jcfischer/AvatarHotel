@@ -20,10 +20,22 @@ end
 compile '/gallery/*/' do
 end
 
-compile '/javascript/*/' do
+compile '/javascripts/*/' do
   nil
 end
 
+compile 'gallery' do
+  case item[:extension]
+    when 'md'
+      filter :rdiscount
+    when 'haml'
+      filter :haml
+    else
+      filter :erb
+  end
+  layout 'two_col'
+  filter :relativize_paths, :type => :html
+end
 compile '*' do
   case item[:extension]
     when 'md'
@@ -50,7 +62,7 @@ route '/gallery/*/' do
   item.identifier.chop + "." + item[:extension]
 end
 
-route '/javascript/*/' do
+route '/javascripts/*/' do
   item.identifier.chop + "." + item[:extension]
 end
 

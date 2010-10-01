@@ -8,6 +8,8 @@
       = @item[:title]
     %link{ :rel => "stylesheet", :type => "text/css", :href => "/style.css", :media => "screen" }
     %meta{ :name => "generator", :content => "nanoc 3.1.5" }
+    %script{ :type => "text/javascript", :src => relative_path_to("/javascripts/jquery-1.4.2.js")}
+    %script{ :type => "text/javascript", :src => relative_path_to("/javascripts/site.js")}
     / Groupwork for the Course "Programming the Internet"
     / University of Liverpool, 2010
     / Ali Mikati & Jens-Christian Fischer
@@ -24,10 +26,11 @@
               %li
                 = link_to(page[:title], page.reps[0])
                 - last = idx == home_page.children.size - 1 ? "last" : nil
-                %ul{ :class => last  }
-                  - page.children.each do |sub_page| 
-                    %li
-                      = link_to(sub_page[:title], sub_page.reps[0]) 
+                - unless page.children.empty?
+                  %ul{ :class => last  }
+                    - page.children.each do |sub_page| 
+                      %li
+                        = link_to(sub_page[:title], sub_page.reps[0]) 
 
       .colmask.threecol
         .colmid
