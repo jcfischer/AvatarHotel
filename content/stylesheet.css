@@ -35,7 +35,7 @@ p {
 
 #fixed {
    margin:0 auto;
-   width:960px;   /* you can use px, em or % */
+   width:960px;  
    text-align:left;
 }
 
@@ -99,13 +99,14 @@ p {
 }
 #main_column {
   float: left;
-  width: 638px;
+  width: 628px;
 
 }
 
 #right_column {
   float: right;
-  width: 318px;
+  width: 308px;
+  padding: 0 0 0 1em;
 }
 .clear {
   clear: both;
@@ -244,33 +245,33 @@ p {
 /* Form handling */
 
 form {
-  margin: 0 0 1.5em 0; }
+  margin: 0 0 1.5em 0;
+  border: 0; }
+  form .fieldset {
+    border: 0px; }
   form .field {
     margin: 2px 0 4px 0; }
   form .buttons {
     padding: 0 0 0 4.3em; }
   form label {
     display: block;
-    font-size: 0.725em;
+    font-size: 0.8em;
     float: left;
     width: 4em;
     padding: 5px 0.3em 0 0;
     text-align: right; }
   form input.text_field {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    font-size: 0.725em;
-    border: 2px solid #a59690;
+    font-size: 0.8em;
     padding: 2px;
     width: 18em;
     margin-left: 0; }
+  form textarea {
+    padding: 2px;
+    width: 80%;
+    margin-left: 0;}
   form input.submit {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
     font-family: "Helvetica Neue", arial, helvetica, sans-serif;
-    font-size: 0.725em;
+    font-size: 0.8em;
     border: 2px solid #a59690;
     background: #a59690;
     padding: 2px 12px;
