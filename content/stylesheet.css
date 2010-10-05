@@ -277,7 +277,10 @@ form {
     padding: 2px 12px;
     font-weight: bold;
     color: #eeeeee; }
-
+   form .fieldError {
+     background: yellow;
+     border: 2px solid red;
+   }
   /* Gallery styles */
 .image {
     width: 598px;

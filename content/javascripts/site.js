@@ -1,4 +1,30 @@
+
+function Email(string) {
+  this.internal = string;
+  this.validate = function() {
+    // This is a rather naive regular expression that does not
+    // cover all the cases of valid email adresses as defined
+    // in RFC 2822. It covers however the simple cases where 
+    // an email address is in the form "name@domain.com", 
+    // "firstname.lastname@subdomain.domain.com" etc. In particular
+    // it matches the email address in the HA 
+    var mail_regexp = /^[\w\-\.\?+]+@([\w\-]+\.)+(\w){2,4}$/;
+    return mail_regexp.test(this.internal); 
+
+  };
+  this.to_s = function() {
+    return this.internal.replace(/</, "&lt;").replace(/>/, "&gt;") 
+  }
+   
+}
 $(document).ready(function(){
+
+  // validation of contact form
+  //
+  $('#contact').validate();
+
+
+  // image gallery
      $("#gallery").append(":");
 $(".image .desc").show(); //Show Banner
 $(".image .block").animate({ opacity: 0.85 }, 1 ); //Set Opacity

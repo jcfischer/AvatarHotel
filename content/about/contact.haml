@@ -5,9 +5,9 @@
   %fieldset#contact-fields
     .field
       %label{ :for => "name"} Name
-      %input{ :id => 'name', :name => 'name', :type => "text", :size => "30"}
+      %input.required{ :id => 'name', :name => 'name', :type => "text", :size => "30"}
     .field
-      %label{ :for => "email"} Email
+      %label.required{ :for => "email"} Email
       %input{ :id => 'email', :name => "email", :type => "text", :size => "30"}
     .field
       %label{ :for => "type"} Type
@@ -19,10 +19,10 @@
         %option Other
     .field
       %label{ :for => "subject"} Subject
-      %input{ :id => "subject", :name => "subject", :type => "text", :size => 40 }
+      %input.required{ :id => "subject", :name => "subject", :type => "text", :size => 40 }
     .field
       %label{ :for => "body"} Message
-      %textarea{ :id => 'body', :name => 'body', :cols => 80, :rows => 10}
+      %textarea.required{ :id => 'body', :name => 'body', :cols => 70, :rows => 10}
   .buttons
     %input{ :class => "submit", :type => "submit", :value => "Submit"}
 
