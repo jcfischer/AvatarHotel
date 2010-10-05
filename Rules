@@ -33,7 +33,6 @@ compile 'gallery' do
     else
       filter :erb
   end
-  layout 'two_col'
   filter :relativize_paths, :type => :html
 end
 compile '*' do
