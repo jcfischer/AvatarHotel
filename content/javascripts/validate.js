@@ -7,7 +7,8 @@
 
   var messages = {
     'required': 'This field must be filled out',
-    'email': 'The format of the email is wrong'
+    'email': 'The format of the email is wrong',
+    'number': 'This field requires a number'
   };
 
   var validations = {
@@ -17,7 +18,11 @@
     'email' : function(element) {
         var mail_regexp = /^[\w\-\.\?+]+@([\w\-]+\.)+(\w){2,4}$/;
         return mail_regexp.test($.trim(element.val())); 
-      }
+      },
+    'number' : function(element) {
+        var number_regexp = /^[\d]+$/;
+        return number_regexp.test($.trim(element.val()));
+    }
     
   }
   var methods = {
@@ -49,7 +54,7 @@
                            // add the message div if it doesn't yet exist
                            if( $("#" + error_message_id).length == 0) {
                             var error = $('<div>', {
-                                            id: error_message_id,
+                                          id: error_message_id,
                                             text: messages[klass]}).
                                         addClass('fieldMessage');
                              $field.after(error);
