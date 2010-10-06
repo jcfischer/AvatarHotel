@@ -7,8 +7,8 @@
       %label{ :for => "name"} Name
       %input.required{ :id => 'name', :name => 'name', :type => "text", :size => "30"}
     .field
-      %label.required{ :for => "email"} Email
-      %input{ :id => 'email', :name => "email", :type => "text", :size => "30"}
+      %label{ :for => "email"} Email
+      %input.required.email{ :id => 'email', :name => "email", :type => "text", :size => "30"}
     .field
       %label{ :for => "type"} Type
       %select{ :id => 'type', :name => "type" }

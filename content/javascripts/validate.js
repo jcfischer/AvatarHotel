@@ -5,12 +5,19 @@
 
 (function ($) {
 
+  var messages = {
+    'required': 'This field must be filled out',
+    'email': 'The format of the email is wrong'
+  };
 
   var validations = {
     'required' : function(element) {
         return $.trim(element.val()).length > 0;
       },
-    email : 'email'
+    'email' : function(element) {
+        var mail_regexp = /^[\w\-\.\?+]+@([\w\-]+\.)+(\w){2,4}$/;
+        return mail_regexp.test($.trim(element.val())); 
+      }
     
   }
   var methods = {
@@ -27,19 +34,32 @@
                    // and execute it
                    fields.each(function(index, field) {
                      var $field = $(field);
+                     var error_message_id = $field.attr('id') + "_error";
                      var klasses = $field.attr('class');
                      var klasses = klasses.split(" ");
                      for (var i in klasses) {
                        var klass = klasses[i];
+                       // is there a validation available that has the
+                       // same name as the class of the field?
                        if(validations[klass]) {
+                         // then call the method associated and hand it the 
+                         // field
                          if(!validations[klass]($field)) {
                            $field.addClass('fieldError');
-                           var error = $('<span>').addClass("fieldMessage").
-                                      html("This field is in error");
-                           $field.after(error);
+                           // add the message div if it doesn't yet exist
+                           if( $("#" + error_message_id).length == 0) {
+                            var error = $('<div>', {
+                                            id: error_message_id,
+                                            text: messages[klass]}).
+                                        addClass('fieldMessage');
+                             $field.after(error);
+                           }
                           submitable = false;
                          } else {
-                            $field.removeClass('fieldError');
+                           // remove the message div and the 
+                           // error class on the field
+                           $("#" + error_message_id).remove();
+                           $field.removeClass('fieldError');
                          }
                      
                        }
