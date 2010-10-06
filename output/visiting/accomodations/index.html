@@ -10,6 +10,7 @@
     <link href='../../style.css' media='screen' rel='stylesheet' type='text/css' />
     <meta content='nanoc 3.1.5' name='generator' />
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' type='text/javascript'></script>
+    <script src='../../javascripts/validate.js' type='text/javascript'></script>
     <script src='../../javascripts/site.js' type='text/javascript'></script>
     <!-- Groupwork for the Course "Programming the Internet" -->
     <!-- University of Liverpool, 2010 -->
@@ -85,113 +86,16 @@
             </ul>
           </li>
         </ul>
+        <div class='clear'></div>
       </div>
       <div id='content'>
-        <div id='main_column'>
-          <head>
-          	<title>Accomodations</title>
-          </head>
-          <body>
-          	<img src = "../../images/reservations.jpg" width = "579" height = "200"/>
-          	<form action='#' id='search-rooms-types' method='get'>
-          	  <fieldset id='search-room-fields'>
-          		<div class='field'>
-          		  <label for='room_category'>Category</label>
-          		  <select id='room_category' name='room_category'>
-          			<option>Pent House</option>
-          			<option>Suite</option>
-          			<option>Double</option>
-          			<option>Single</option>
-          			<option>HoneyMoon</option>
-          		  </select>
-          		</div>
-          		<div class='field'>
-          		  <label for='room_num'>Rooms</label>
-          		  <input id='room_num' size='10' type='text' value="1" />
-          		</div>
-          		<div class='field'>
-          		  <label for='num_days'>Nights</label>
-          		  <input id='num_days' size='10' type='text' value="1" />
-          		</div>
-          		<div class='field'>
-          		  <label for='day'>Date</label>
-          		  <select id='day' name='day'>
-          			<option>1</option>
-          			<option>2</option>
-          			<option>3</option>
-          			<option>4</option>
-          			<option>5</option>
-          			<option>6</option>
-          			<option>7</option>
-          			<option>8</option>
-          			<option>9</option>
-          			<option>10</option>
-          			<option>11</option>
-          			<option>12</option>
-          			<option>13</option>
-          			<option>14</option>
-          			<option>15</option>
-          			<option>16</option>
-          			<option>17</option>
-          			<option>18</option>
-          			<option>19</option>
-          			<option>20</option>
-          			<option>21</option>
-          			<option>22</option>
-          			<option>23</option>
-          			<option>24</option>
-          			<option>25</option>
-          			<option>26</option>
-          			<option>27</option>
-          			<option>28</option>
-          			<option>29</option>
-          			<option>30</option>
-          			<option>31</option>
-          		  </select>
-          		  <select id='month' name='month'>
-          			<option>January</option>
-          			<option>February</option>
-          			<option>March</option>
-          			<option>April</option>
-          			<option>May</option>
-          			<option>June</option>
-          			<option>Juli</option>
-          			<option>August</option>
-          			<option>September</option>
-          			<option>October</option>
-          			<option>November</option>
-          			<option>December</option>
-          		  </select>
-          		  <select id='year' name='year'>
-          			<option>2010</option>
-          			<option>2011</option>
-          			<option>2012</option>
-          		  </select>
-          		</div>
-          	  </fieldset>
-          	  <div class='buttons'>
-          		<input class='submit' type='submit' value='Search' /> 
-          		<input class='clear' type='reset' value='Clear'/>
-          	  </div>
-          	</form>
-          	<h3>Welcome to Avatar Hotel</h3>
-          	<hr />
-          	<p>Supremely comfortable ... A room at Avatar Hotel begins with a liberating sense of space &#45 your 
-          	guest room or suite is often among the destination&#96s largest. Designed to inspire, its beauty connects 
-          	you with the surrounding environment, while ensuring your comfort and convenience. <br /> <br />
-          	You'll enjoy a restful sleep because each sensory detail has been carefully refined to be just right. 
-          	As have all the added touches, from the position of your high&#45speed network link to the precise depth 
-          	of your soaking tub. You feel thoroughly at home, and completely at your best. 
-          	</p>
-          </body>
-        </div>
         <div id='right_column'>
           <h2>Search for a room</h2>
-          <form action='#' id='search-room' method='get'>
+          <form action='#' id='search_room' method='get'>
             <fieldset id='search-room-fields'>
               <div class='field'>
                 <label for='nr_people'>People</label>
-                <input id='nr_people' size='4' type='text' />
+                <input class='required number' id='nr_people' size='4' type='text' />
               </div>
               <div class='field'>
                 <label for='day'>Date</label>
@@ -266,12 +170,175 @@
             </div>
           </form>
         </div>
-      </div>
-      <div class='clear'></div>
-      <div id='footer'>
-        <div id='copyright'>
-          &copy; 2010 - Group 2, UoL MscIT, Programming the Internet
+        <div id='main_column'>
+          <head>
+          	<title>Accomodations</title>
+          	<script type = "text/javascript">
+          		<!--
+          			alert('in the script');
+          			function LPad(ContentToSize,PadLength,PadChar)
+          			{
+          				var PaddedString=ContentToSize.toString();
+          				for(i=ContentToSize.length+1;I<=PadLength;i++)
+          				{
+          					PaddedString=PadChar+PaddedString;
+          				}
+          				return PaddedString;
+          			}
+          
+          			function Validate_number(form_id,field_id)
+          			{
+          				var num = parseInt(document.forms[form_id].elements[field_id].value);
+          				
+          				if (num != document.forms[form_id].elements[field_id].value)
+          				{
+          					alert('Invalid Number');
+          					return false;
+          				}
+          				else
+          				{
+          					return true;
+          				}
+          			}
+          			
+          			function checkdate(form_id,day_id,month_id,year_id)
+          			{
+          				var ws_date;
+          				switch (document.forms[form_id].elements[month_id].value) //.toUpperCase()
+          				{
+          					case 'January': ws_date="01"; break;
+          					case 'February': ws_date="02"; break;
+          					case 'March': ws_date="03"; break;
+          					case 'April': ws_date="04"; break;
+          					case 'May': ws_date="05"; break;
+          					case 'June': ws_date="06"; break;
+          					case 'Juli': ws_date="07"; break;
+          					case 'August': ws_date="08"; break;
+          					case 'September': ws_date="09"; break;
+          					case 'October': ws_date="10"; break;
+          					case 'November': ws_date="11"; break;
+          					case 'December': ws_date="12"; break;
+          					default ws_date="00"
+          				}
+          				var input = LPad(document.forms[form_id].elements[day_id].value,2,"0") + "/" + ws_date + "/" + document.forms[form_id].elements[year_id].value;
+          				var validformat=/^\d{2}\/\d{2}\/\d{4}$/; //Basic check for format validity
+          				var returnval=false;
+          				if (!validformat.test(input.value))
+          					alert("Invalid Date Format. Please correct and submit again.");
+          				else
+          				{ //Detailed check for valid date ranges
+          					var monthfield=input.value.split("/")[0];
+          					var dayfield=input.value.split("/")[1];
+          					var yearfield=input.value.split("/")[2];
+          					var dayobj = new Date(yearfield, monthfield-1, dayfield);
+          					if ((dayobj.getMonth()+1!=monthfield)||(dayobj.getDate()!=dayfield)||(dayobj.getFullYear()!=yearfield))
+          						alert("Invalid Day, Month, or Year range detected. Please correct and submit again.");
+          					else
+          						returnval=true;
+          				}
+          				if (returnval==false) input.select();
+          				return returnval;
+          			}
+          		//-->
+          		</script>
+          </head>
+          <body>
+          	<img src = "../../images/reservations.jpg" width = "579" height = "200"/>
+          	<form action='#' id='search-rooms-types' method='get'>
+          	  <fieldset id='search-room-fields'>
+          		<div class='field'>
+          		  <label for='room_category'>Category</label>
+          		  <select id='room_category' name='room_category'>
+          			<option>Pent House</option>
+          			<option>Suite</option>
+          			<option>Double</option>
+          			<option>Single</option>
+          			<option>HoneyMoon</option>
+          		  </select>
+          		</div>
+          		<div class='field'>
+          		  <label for='room_num'>Rooms</label>
+          		  <input id='room_num' size='10' type='text' value="1" onchange="Validate_number('search-rooms-types','room_num');" />
+          		</div>
+          		<div class='field'>
+          		  <label for='num_days'>Nights</label>
+          		  <input id='num_days' size='10' type='text' value="1"  onchange="Validate_number('search-rooms-types','room_num');" />
+          		</div>
+          		<div class='field'>
+          		  <label for='day'>Date</label>
+          		  <select id='day' name='day'>
+          			<option>1</option>
+          			<option>2</option>
+          			<option>3</option>
+          			<option>4</option>
+          			<option>5</option>
+          			<option>6</option>
+          			<option>7</option>
+          			<option>8</option>
+          			<option>9</option>
+          			<option>10</option>
+          			<option>11</option>
+          			<option>12</option>
+          			<option>13</option>
+          			<option>14</option>
+          			<option>15</option>
+          			<option>16</option>
+          			<option>17</option>
+          			<option>18</option>
+          			<option>19</option>
+          			<option>20</option>
+          			<option>21</option>
+          			<option>22</option>
+          			<option>23</option>
+          			<option>24</option>
+          			<option>25</option>
+          			<option>26</option>
+          			<option>27</option>
+          			<option>28</option>
+          			<option>29</option>
+          			<option>30</option>
+          			<option>31</option>
+          		  </select>
+          		  <select id='month' name='month'>
+          			<option>January</option>
+          			<option>February</option>
+          			<option>March</option>
+          			<option>April</option>
+          			<option>May</option>
+          			<option>June</option>
+          			<option>Juli</option>
+          			<option>August</option>
+          			<option>September</option>
+          			<option>October</option>
+          			<option>November</option>
+          			<option>December</option>
+          		  </select>
+          		  <select id='year' name='year'>
+          			<option>2010</option>
+          			<option>2011</option>
+          			<option>2012</option>
+          		  </select>
+          		</div>
+          	  </fieldset>
+          	  <div class='buttons'>
+          		<input class='submit' type='submit' value='Search' onclick = "checkdate('search-Jobs','day','month','year');" /> 
+          		<input class='clear' type='reset' value='Clear'/>
+          	  </div>
+          	</form>
+          	<h3>Welcome to Avatar Hotel</h3>
+          	<hr />
+          	<p>Supremely comfortable ... A room at Avatar Hotel begins with a liberating sense of space &#45 your 
+          	guest room or suite is often among the destination&#96s largest. Designed to inspire, its beauty connects 
+          	you with the surrounding environment, while ensuring your comfort and convenience. <br /> <br />
+          	You'll enjoy a restful sleep because each sensory detail has been carefully refined to be just right. 
+          	As have all the added touches, from the position of your high&#45speed network link to the precise depth 
+          	of your soaking tub. You feel thoroughly at home, and completely at your best. 
+          	</p>
+          </body>
         </div>
+        <div class='clear'></div>
+      </div>
+      <div id='footer'>
         <div id='address'>
           <div class='vcard' id='hcard-Avatar-Hotel'>
             <a class='url fn' href='http://student.ohecampus.com/Projects/group59'>
@@ -295,6 +362,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div id='copyright'>
+          &copy; 2010 - Group 2, UoL MscIT, Programming the Internet
         </div>
       </div>
     </div>

@@ -3,6 +3,74 @@ title: Accomodations
 ---
 <head>
 	<title>Accomodations</title>
+	<script type = "text/javascript">
+		<!--
+			alert('in the script');
+			function LPad(ContentToSize,PadLength,PadChar)
+			{
+				var PaddedString=ContentToSize.toString();
+				for(i=ContentToSize.length+1;I<=PadLength;i++)
+				{
+					PaddedString=PadChar+PaddedString;
+				}
+				return PaddedString;
+			}
+
+			function Validate_number(form_id,field_id)
+			{
+				var num = parseInt(document.forms[form_id].elements[field_id].value);
+				
+				if (num != document.forms[form_id].elements[field_id].value)
+				{
+					alert('Invalid Number');
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+			
+			function checkdate(form_id,day_id,month_id,year_id)
+			{
+				var ws_date;
+				switch (document.forms[form_id].elements[month_id].value) //.toUpperCase()
+				{
+					case 'January': ws_date="01"; break;
+					case 'February': ws_date="02"; break;
+					case 'March': ws_date="03"; break;
+					case 'April': ws_date="04"; break;
+					case 'May': ws_date="05"; break;
+					case 'June': ws_date="06"; break;
+					case 'Juli': ws_date="07"; break;
+					case 'August': ws_date="08"; break;
+					case 'September': ws_date="09"; break;
+					case 'October': ws_date="10"; break;
+					case 'November': ws_date="11"; break;
+					case 'December': ws_date="12"; break;
+					default ws_date="00"
+				}
+				var input = LPad(document.forms[form_id].elements[day_id].value,2,"0") + "/" + ws_date + "/" + document.forms[form_id].elements[year_id].value;
+				var validformat=/^\d{2}\/\d{2}\/\d{4}$/; //Basic check for format validity
+				var returnval=false;
+				if (!validformat.test(input.value))
+					alert("Invalid Date Format. Please correct and submit again.");
+				else
+				{ //Detailed check for valid date ranges
+					var monthfield=input.value.split("/")[0];
+					var dayfield=input.value.split("/")[1];
+					var yearfield=input.value.split("/")[2];
+					var dayobj = new Date(yearfield, monthfield-1, dayfield);
+					if ((dayobj.getMonth()+1!=monthfield)||(dayobj.getDate()!=dayfield)||(dayobj.getFullYear()!=yearfield))
+						alert("Invalid Day, Month, or Year range detected. Please correct and submit again.");
+					else
+						returnval=true;
+				}
+				if (returnval==false) input.select();
+				return returnval;
+			}
+		//-->
+		</script>
 </head>
 <body>
 	<img src = "<%= relative_path_to("/images/reservations.jpg") %>" width = "579" height = "200"/>
@@ -20,11 +88,11 @@ title: Accomodations
 		</div>
 		<div class='field'>
 		  <label for='room_num'>Rooms</label>
-		  <input id='room_num' size='10' type='text' value="1" />
+		  <input id='room_num' size='10' type='text' value="1" onchange="Validate_number('search-rooms-types','room_num');" />
 		</div>
 		<div class='field'>
 		  <label for='num_days'>Nights</label>
-		  <input id='num_days' size='10' type='text' value="1" />
+		  <input id='num_days' size='10' type='text' value="1"  onchange="Validate_number('search-rooms-types','room_num');" />
 		</div>
 		<div class='field'>
 		  <label for='day'>Date</label>
@@ -83,7 +151,7 @@ title: Accomodations
 		</div>
 	  </fieldset>
 	  <div class='buttons'>
-		<input class='submit' type='submit' value='Search' /> 
+		<input class='submit' type='submit' value='Search' onclick = "checkdate('search-Jobs','day','month','year');" /> 
 		<input class='clear' type='reset' value='Clear'/>
 	  </div>
 	</form>
