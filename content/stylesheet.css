@@ -378,7 +378,7 @@ form {
    }
   /* Gallery styles */
 #image {
-    width: 598px;
+    width: 596px;
     height: 456px;
     position: relative;
     overflow: hidden; /*--Overflow hidden allows the description to toggle/tuck away as it slides down--*/
@@ -391,11 +391,9 @@ form {
 }
 
 .thumbnails {
+    padding: 1em 0;
     float: left;
-    width: 299px;
-    background: #f0f0f0;
-    border-right: 1px solid #fff;
-    border-top: 1px solid #ccc;
+    width: 596px;
 }
 .thumbnails img {
     border: 1px solid #ccc;
@@ -410,13 +408,12 @@ form {
 }
 .thumbnails ul li{
     margin: 0;
-    padding: 12px 10px;
-    background: #f0f0f0 url(nav_a.gif) repeat-x;
-    width: 279px;
+    padding: 12px 20px;
+    background: #403a3f;
+    width: 108px;
     float: left;
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #fff;
-    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #f2d10e;
+    border-right: 1px solid #f2d10e;
 }
 .thumbnails ul li.hover { /*--Hover State--*/
     background: #ddd;
@@ -426,17 +423,5 @@ form {
     background: #fff;
     cursor: default;
 }
-html .thumbnails ul li h2 {
-    font-size: 1.5em;
-    margin: 5px 0;
-    padding: 0;
-}
-.thumbnails ul li .block {
-    float: left;
-    margin-left: 10px;
-    padding: 0;
-    width: 170px;
-}
-.thumbnails ul li p{display: none;}/*--Hide the description on the list items--*/
 
   
