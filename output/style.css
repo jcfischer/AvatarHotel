@@ -7,11 +7,10 @@ body {
 	padding:0;
 	border:0;			/* This removes the border around the viewport in old versions of IE */
 	width:100%;
-	background:black;
-	min-width:600px;		/* Minimum width of layout - remove line if not required */
-					/* The min-width property does not work in old versions of Internet Explorer */
+	background:white;
 	font-size:90%;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  text-align: center;
 }
 a {
 	color:#369;
@@ -33,6 +32,13 @@ p {
 	display:block;
 	padding-top:10px;
 }
+
+#fixed {
+   margin:0 auto;
+   width:960px;   /* you can use px, em or % */
+   text-align:left;
+}
+
 
 /* Header styles */
 #header {
@@ -69,7 +75,6 @@ p {
 	margin:0 0 0 1px;
 	padding:3px 10px;
 	text-align:center;
-	background:#eee;
 	color:#000;
 	text-decoration:none;
 	position:relative;
@@ -83,70 +88,35 @@ p {
 #header ul li a.active,
 #header ul li a.active:hover {
 	color:#fff;
-	background:#000;
 	font-weight:bold;
 }
 #header ul li a span {
 	display:block;
 }
+
+#content {
+  width: 960px;
+}
+#main_column {
+  float: left;
+  width: 638px;
+
+}
+
+#right_column {
+  float: right;
+  width: 318px;
+}
+.clear {
+  clear: both;
+}
 /* 'widths' sub menu */
 #layoutdims {
 	clear:both;
-	background:#eee;
 	border-top:4px solid #000;
 	margin:0;
 	padding:6px 15px !important;
 	text-align:right;
-}
-/* column container */
-.colmask {
-	position:relative;	/* This fixes the IE7 overflow hidden bug */
-	clear:both;
-	float:left;
-	width:100%;			/* width of whole page */
-	overflow:hidden;		/* This chops off any overhanging divs */
-}
-/* common column settings */
-.colright,
-.colmid,
-.colleft {
-	float:left;
-	width:100%;			/* width of page */
-	position:relative;
-}
-.col1,
-.col2,
-.col3 {
-	float:left;
-	position:relative;
-	padding:0 0 1em 0;	/* no left and right padding on columns, we just make them narrower instead 
-					only padding top and bottom is included here, make it whatever value you need */
-	overflow:hidden;
-}
-/* 3 Column settings */
-.threecol {
-	background:#eee;		/* right column background colour */
-}
-.threecol .colmid {
-	right:25%;			/* width of the right column */
-	background:#fff;		/* center column background colour */
-}
-.threecol .colleft {
-	right:50%;			/* width of the middle column */
-	background:#f4f4f4;	/* left column background colour */
-}
-.threecol .col1 {
-	width:46%;			/* width of center column content (column width minus padding on either side) */
-	left:102%;			/* 100% plus left padding of center column */
-}
-.threecol .col2 {
-	width:21%;			/* Width of left column content (column width minus padding on either side) */
-	left:31%;			/* width of (right column) plus (center column left and right padding) plus (left column left padding) */
-}
-.threecol .col3 {
-	width:21%;			/* Width of right column content (column width minus padding on either side) */
-	left:85%;			/* Please make note of the brackets here:
-					(100% - left column width) plus (center column left and right padding) plus (left column left and right padding) plus (right column left padding) */
 }
 /* Footer styles */
 #footer {
@@ -270,3 +240,101 @@ p {
 #address {
   background-color: #ddd;
 }
+
+/* Form handling */
+
+form {
+  margin: 0 0 1.5em 0; }
+  form .field {
+    margin: 2px 0 4px 0; }
+  form .buttons {
+    padding: 0 0 0 4.3em; }
+  form label {
+    display: block;
+    font-size: 0.725em;
+    float: left;
+    width: 4em;
+    padding: 5px 0.3em 0 0;
+    text-align: right; }
+  form input.text_field {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 0.725em;
+    border: 2px solid #a59690;
+    padding: 2px;
+    width: 18em;
+    margin-left: 0; }
+  form input.submit {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-family: "Helvetica Neue", arial, helvetica, sans-serif;
+    font-size: 0.725em;
+    border: 2px solid #a59690;
+    background: #a59690;
+    padding: 2px 12px;
+    font-weight: bold;
+    color: #eeeeee; }
+
+  /* Gallery styles */
+.image {
+    width: 598px;
+    height: 456px;
+    float: left;
+    background: #333;
+    position: relative;
+    overflow: hidden; /*--Overflow hidden allows the description to toggle/tuck away as it slides down--*/
+    color: #fff;
+}
+
+.thumbnails {
+    float: left;
+    width: 299px;
+    background: #f0f0f0;
+    border-right: 1px solid #fff;
+    border-top: 1px solid #ccc;
+}
+.thumbnails img {
+    border: 1px solid #ccc;
+    padding: 5px;
+    background: #fff;
+    float: left;
+}
+.thumbnails ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.thumbnails ul li{
+    margin: 0;
+    padding: 12px 10px;
+    background: #f0f0f0 url(nav_a.gif) repeat-x;
+    width: 279px;
+    float: left;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #ccc;
+}
+.thumbnails ul li.hover { /*--Hover State--*/
+    background: #ddd;
+    cursor: pointer;
+}
+.thumbnails ul li.active { /*--Active State--*/
+    background: #fff;
+    cursor: default;
+}
+html .thumbnails ul li h2 {
+    font-size: 1.5em;
+    margin: 5px 0;
+    padding: 0;
+}
+.thumbnails ul li .block {
+    float: left;
+    margin-left: 10px;
+    padding: 0;
+    width: 170px;
+}
+.thumbnails ul li p{display: none;}/*--Hide the description on the list items--*/
+
+  
