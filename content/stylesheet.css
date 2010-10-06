@@ -4,8 +4,9 @@ body {
 	padding:0;
 	border:0;			/* This removes the border around the viewport in old versions of IE */
 	width:100%;
-	background:#eee;
+	background:#403a3f;
 	font-size:100%;
+  line-height: 1.4;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   text-align: center;
 }
@@ -14,7 +15,6 @@ a {
 }
 a:hover {
 	color:#fff;
-	background:#369;
 	text-decoration:none;
 }
 h1, h2, h3 {
@@ -44,14 +44,29 @@ p {
 	width:100%;
 }
 #header {
-	border-bottom:1px solid #000;
 }
 #header p,
-#header h1,
 #header h2 {
 	padding:.4em 15px 0 15px;
 	margin:0;
 }
+
+#header h1 {
+  height: 86px;
+  width: 400px;
+  margin: 0;
+  padding: 0;
+  background: url('../images/avatar_hotel_logo.png');
+  text-indent: -1000em;
+}
+
+#header h1 a {
+  display: block;
+  height: 86px;
+  width: 400px;
+
+}
+
 #header ul {
 	clear:left;
 	float:left;
@@ -93,20 +108,19 @@ p {
 
 #content {
   width: 960px;
-  background: white;
+  background: #E9D8A2;
 }
 #main_column {
-  width: 608px;
-  padding: 10px;
+  width: 588px;
+  padding: 10px 20px;
   min-height: 420px;
-  background: #aaa;
+  background: #F4EBCF;
 }
 
 #right_column {
   float: right;
   width: 308px;
-  padding: 0 0 0 1em;
-  background: #bbb;
+  padding: 10px 10px;
 }
 .clear {
   clear: both;
@@ -137,6 +151,10 @@ p {
 }
 #footer #address div {
   display: inline;
+
+}
+#footer #address div:after {
+  content: "";
 }
 #footer #address div.electronic {
   display: block;
@@ -164,16 +182,13 @@ p {
    margin:0;
    padding:0;
    list-style:none;
-   float:right;
    position:relative;
-   right:50%;
 }
 #centeredmenu ul li {
    margin:0 0 0 1px;
    padding:0;
    float:left;
    position:relative;
-   left:50%;
    top:1px;
 }
 #centeredmenu ul li a {
@@ -182,7 +197,7 @@ p {
    padding:.6em .5em .4em;
    font-size:1em;
    line-height:1em;
-   background:#ddd;
+   background:#fff;
    text-decoration:none;
    color:#444;
    font-weight:bold;
@@ -193,13 +208,13 @@ p {
    background:#000;
 }
 #centeredmenu ul li a:hover {
-   background:#36f; /* Top menu items background colour */
+   background:#f2d10e; /* Top menu items background colour */
    color:#fff;
    border-bottom:1px solid #03f;
 }
 #centeredmenu ul li:hover a,
 #centeredmenu ul li.hover a { /* This line is required for IE 6 and below */
-   background:#36f; /* Top menu items background colour */
+   background:#f2d10e; /* Top menu items background colour */
    color:#fff;
    border-bottom:1px solid #03f;
 }
@@ -212,6 +227,7 @@ p {
    left:0;
    right:auto; /*resets the right:50% on the parent ul */
    width:10em; /* width of the drop-down menus */
+   background: white;
 }
 #centeredmenu ul ul li {
    left:auto;  /*resets the left:50% on the parent li */
@@ -225,7 +241,7 @@ p {
 #centeredmenu ul li.hover ul li a { /* This line is required for IE 6 and below */
    font-size:.875em;
    font-weight:normal; /* resets the bold set for the top level menu items */
-   background:#eee;
+   background: rgba(153,131,74,0.2);
    color:#444;
    line-height:1.4em; /* overwrite line-height value from top menu */
    border-bottom:1px solid #ddd; /* sub menu item horizontal lines */
@@ -234,7 +250,7 @@ p {
 #centeredmenu ul li.active ul li a:hover,
 #centeredmenu ul li:hover ul li a:hover,
 #centeredmenu ul li.hover ul li a:hover { /* This line is required for IE 6 and below */
-   background:#36f; /* Sub menu items background colour */
+   background:#f2d10e; /* Sub menu items background colour */
    color:#fff;
 }
 
