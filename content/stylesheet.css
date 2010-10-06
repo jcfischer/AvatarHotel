@@ -368,12 +368,13 @@ form {
     font-weight: bold;
     color: #eeeeee; }
    form .fieldError {
-     background: yellow;
-     border: 2px solid red;
+     background: #f2d10e;
+     border: 2px solid #ccb13e;
    }
    form .fieldMessage {
      font-size: 0.75em;
      font-weight: bold;
+     color: #403a3f;
      padding: 0;
    }
   /* Gallery styles */
