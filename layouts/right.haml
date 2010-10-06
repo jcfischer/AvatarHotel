@@ -1,9 +1,9 @@
 %h2 Search for a room
-%form{ :action => "#", :id => "search-room", :method => "get"}
+%form{ :action => "#", :id => "search_room", :method => "get"}
   %fieldset#search-room-fields
     .field
       %label{ :for => "nr_people"} People
-      %input{ :id => 'nr_people', :type => "text", :size => "4"}
+      %input.required.number{ :id => 'nr_people', :type => "text", :size => "4"}
     .field
       %label{ :for => 'day'} Date
       %select{ :name => 'day', :id => 'day'}
