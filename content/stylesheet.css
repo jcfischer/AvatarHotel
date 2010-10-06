@@ -1,14 +1,11 @@
-/* Temporary layout 
- * copied from:  http://matthewjamestaylor.com/blog/perfect-3-column.htm
- */
 
 body {
 	margin:0;
 	padding:0;
 	border:0;			/* This removes the border around the viewport in old versions of IE */
 	width:100%;
-	background:white;
-	font-size:90%;
+	background:#eee;
+	font-size:100%;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   text-align: center;
 }
@@ -37,13 +34,13 @@ p {
    margin:0 auto;
    width:960px;  
    text-align:left;
+   background: white;
 }
 
 
 /* Header styles */
 #header {
 	clear:both;
-	float:left;
 	width:100%;
 }
 #header {
@@ -96,17 +93,20 @@ p {
 
 #content {
   width: 960px;
+  background: white;
 }
 #main_column {
-  float: left;
-  width: 628px;
-
+  width: 608px;
+  padding: 10px;
+  min-height: 420px;
+  background: #aaa;
 }
 
 #right_column {
   float: right;
   width: 308px;
   padding: 0 0 0 1em;
+  background: #bbb;
 }
 .clear {
   clear: both;
@@ -130,17 +130,31 @@ p {
 	padding:10px;
 	margin:0;
 }
-
+#footer #address {
+  text-align: center;
+  padding: 0.5em 0;
+  font-size: 0.875em;
+}
+#footer #address div {
+  display: inline;
+}
+#footer #address div.electronic {
+  display: block;
+}
+#footer #copyright {
+  margin: 0.5em 0;
+  font-size: 0.8125em;
+  
+}
 /* http://matthewjamestaylor.com/blog/centered-dropdown-menus */
 /* Main menu settings */
 #centeredmenu {
    clear:both;
-   float:left;
    margin:0;
    padding:0;
    border-bottom:1px solid #000; /* black line below menu */
    width:100%;
-   font-size:90%; /* Menu text size */
+   font-size: 0.875em; /* Menu text size */
    z-index:1000; /* This makes the dropdown menus appear above the page content below */
    position:relative;
 }
@@ -209,7 +223,7 @@ p {
 #centeredmenu ul li.active li a,
 #centeredmenu ul li:hover ul li a,
 #centeredmenu ul li.hover ul li a { /* This line is required for IE 6 and below */
-   font-size:.8em;
+   font-size:.875em;
    font-weight:normal; /* resets the bold set for the top level menu items */
    background:#eee;
    color:#444;
@@ -255,13 +269,13 @@ form {
     padding: 0 0 0 4.3em; }
   form label {
     display: block;
-    font-size: 0.8em;
+    font-size: 0.875em;
     float: left;
     width: 4em;
     padding: 5px 0.3em 0 0;
     text-align: right; }
   form input.text_field {
-    font-size: 0.8em;
+    font-size: 0.875em;
     padding: 2px;
     width: 18em;
     margin-left: 0; }
@@ -271,7 +285,7 @@ form {
     margin-left: 0;}
   form input.submit {
     font-family: "Helvetica Neue", arial, helvetica, sans-serif;
-    font-size: 0.8em;
+    font-size: 0.875em;
     border: 2px solid #a59690;
     background: #a59690;
     padding: 2px 12px;
@@ -282,7 +296,7 @@ form {
      border: 2px solid red;
    }
    form .fieldMessage {
-     font-size: 0.8em;
+     font-size: 0.875em;
      font-weight: bold;
      padding: 0 0 0 4.3em;
    }

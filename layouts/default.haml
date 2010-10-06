@@ -32,12 +32,13 @@
                     - page.children.each do |sub_page| 
                       %li
                         = link_to(sub_page[:title], sub_page.reps[0]) 
+        .clear
 
       #content
-        #main_column
-          = yield
         #right_column
           = render 'right'
-      .clear
+        #main_column
+          = yield
+        .clear
       #footer
         = render 'footer'
