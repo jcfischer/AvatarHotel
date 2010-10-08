@@ -72,7 +72,7 @@
                      }
                    }); 
                    return submitable;
-                }, 
+                } 
   };
   $.fn.validate = function() {
     return this.each(function(){
