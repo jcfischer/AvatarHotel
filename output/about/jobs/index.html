@@ -174,7 +174,6 @@
           <head>
           		<title>Jobs and Career</title>
           		<script type = "text/javascript">
-          		<!--
           			alert('in the script');
           			function LPad(ContentToSize,PadLength,PadChar)
           			{
@@ -239,7 +238,6 @@
           				if (returnval==false) input.select();
           				return returnval;
           			}
-          		//-->
           		</script>
           	</head>
           	<body>
@@ -325,7 +323,7 @@
           				</div>
           			</fieldset>
           			<div class='buttons'>
-          				<input class='submit' type='submit' value='Search' onclick = "checkdate('search-Jobs','day','month','year');" /> 
+          				<input class='submit' type='submit' value='Search' onclick = "javascript:return checkdate('search-Jobs','day','month','year');" /> 
           				<input class='clear' type='reset' value='Clear'/>
           			</div>
           		</form>
