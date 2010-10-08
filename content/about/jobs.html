@@ -1,0 +1,189 @@
+---
+title: Jobs and Career
+---
+	<head>
+		<title>Jobs and Career</title>
+		<script type = "text/javascript">
+			alert('in the script');
+			function LPad(ContentToSize,PadLength,PadChar)
+			{
+				var PaddedString=ContentToSize.toString();
+				for(i=ContentToSize.length+1;I<=PadLength;i++)
+				{
+					PaddedString=PadChar+PaddedString;
+				}
+				return PaddedString;
+			}
+
+			function Validate_number(form_id,field_id)
+			{
+				var num = parseInt(document.forms[form_id].elements[field_id].value);
+				
+				if (num != document.forms[form_id].elements[field_id].value)
+				{
+					alert('Invalid Number');
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+			
+			function checkdate(form_id,day_id,month_id,year_id)
+			{
+				var ws_date;
+				switch (document.forms[form_id].elements[month_id].value) //.toUpperCase()
+				{
+					case 'January': ws_date="01"; break;
+					case 'February': ws_date="02"; break;
+					case 'March': ws_date="03"; break;
+					case 'April': ws_date="04"; break;
+					case 'May': ws_date="05"; break;
+					case 'June': ws_date="06"; break;
+					case 'Juli': ws_date="07"; break;
+					case 'August': ws_date="08"; break;
+					case 'September': ws_date="09"; break;
+					case 'October': ws_date="10"; break;
+					case 'November': ws_date="11"; break;
+					case 'December': ws_date="12"; break;
+					default ws_date="00"
+				}
+				var input = LPad(document.forms[form_id].elements[day_id].value,2,"0") + "/" + ws_date + "/" + document.forms[form_id].elements[year_id].value;
+				var validformat=/^\d{2}\/\d{2}\/\d{4}$/; //Basic check for format validity
+				var returnval=false;
+				if (!validformat.test(input.value))
+					alert("Invalid Date Format. Please correct and submit again.");
+				else
+				{ //Detailed check for valid date ranges
+					var monthfield=input.value.split("/")[0];
+					var dayfield=input.value.split("/")[1];
+					var yearfield=input.value.split("/")[2];
+					var dayobj = new Date(yearfield, monthfield-1, dayfield);
+					if ((dayobj.getMonth()+1!=monthfield)||(dayobj.getDate()!=dayfield)||(dayobj.getFullYear()!=yearfield))
+						alert("Invalid Day, Month, or Year range detected. Please correct and submit again.");
+					else
+						returnval=true;
+				}
+				if (returnval==false) input.select();
+				return returnval;
+			}
+		</script>
+	</head>
+	<body>
+		<h2>Search for a Job</h2>
+		<form action='#' id='search-Jobs' method='get'>
+			<fieldset id='search-Job-fields'>
+				<div class='field'>
+				  <label for='job_id'>Reference</label>
+				  <input id='job_id' size='10' type='text' />
+				</div>
+				<div class='field'>
+				  <label for='job_desc'>Desc</label>
+				  <input id='job_desc' size='50' type='text' />
+				</div>
+				<div class='field'>
+				  <label for='job_skills'>Skills</label>
+				  <input id='job_skills' size='50' type='text' />
+				</div>
+				<div class='field'>
+					<label for='job_category'>Category</label>
+					<select id='job_category' name='job_category'>
+						<option>Information Technology</option>
+						<option>House Cleaning</option>
+						<option>Management</option>
+						<option>Catering</option>
+						<option>Hospitality</option>
+					</select>
+				</div>
+				<div class='field'>
+					<label for='day'>Date</label>
+					<select id='day' name='day'>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						<option>11</option>
+						<option>12</option>
+						<option>13</option>
+						<option>14</option>
+						<option>15</option>
+						<option>16</option>
+						<option>17</option>
+						<option>18</option>
+						<option>19</option>
+						<option>20</option>
+						<option>21</option>
+						<option>22</option>
+						<option>23</option>
+						<option>24</option>
+						<option>25</option>
+						<option>26</option>
+						<option>27</option>
+						<option>28</option>
+						<option>29</option>
+						<option>30</option>
+						<option>31</option>
+					</select>
+					<select id='month' name='month'>
+						<option>January</option>
+						<option>February</option>
+						<option>March</option>
+						<option>April</option>
+						<option>May</option>
+						<option>June</option>
+						<option>Juli</option>
+						<option>August</option>
+						<option>September</option>
+						<option>October</option>
+						<option>November</option>
+						<option>December</option>
+					</select>
+					<select id='year' name='year'>
+						<option>2010</option>
+						<option>2011</option>
+						<option>2012</option>
+					</select>
+				</div>
+			</fieldset>
+			<div class='buttons'>
+				<input class='submit' type='submit' value='Search' onclick = "javascript:return checkdate('search-Jobs','day','month','year');" /> 
+				<input class='clear' type='reset' value='Clear'/>
+			</div>
+		</form>
+		<h2>List of jobs</h2>
+		<p>
+		  (to be filled from a database later)
+		</p>
+		<ul id='job_list'>
+		  <li>
+			<h3>Senior Web developer</h3>
+			<p class='date'>22.9.2010</p>
+			<p>
+			  As the senior developer, you will be responsible for developing
+			  and maintaining the website of AvatarHotel.
+			</p>
+			<p>
+			  Skills: XHTML, CSS, JavaScript, basic database know-how
+			</p>
+		  </li>
+		  <li>
+			<h3>Pixel Wrangler</h3>
+			<p class='date'>1.5.2010</p>
+			<p>
+			  Your job is to wrangle the pixeleated avatars into proper shape by
+			  providing an informative and entertaining, fully-immersive almost
+			  as good as being there, show &amp; trainings programme.
+			</p>
+			<p>
+			  Skills: Wrangled Pixels
+			</p>
+		  </li>
+		</ul>
+	</body>
