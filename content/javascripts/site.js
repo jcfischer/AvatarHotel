@@ -19,7 +19,9 @@ $(document).ready(function(){
     var old_image = $('#image img');
     $('#image').append(new_image);
     new_image.fadeIn('slow');
-    old_image.remove();
+    old_image.fadeOut('slow', function() {
+      $(this).remove();
+    });
     return false;
 
   });

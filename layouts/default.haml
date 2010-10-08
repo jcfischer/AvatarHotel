@@ -27,7 +27,7 @@
               %li
                 = link_to(page[:title], page.reps[0])
                 - last = idx == home_page.children.size - 1 ? "last" : nil
-                - unless page.children.empty?
+                - unless page.children.empty? || page[:title] == "Gallery"
                   %ul{ :class => last  }
                     - page.children.each do |sub_page| 
                       %li
