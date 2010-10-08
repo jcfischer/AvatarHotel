@@ -42,3 +42,17 @@
         .clear
       #footer
         = render 'footer'
+    :javascript
+      <!-- Piwik -->
+      <script type="text/javascript">
+      var pkBaseURL = (("https:" == document.location.protocol) ? "https://stats.invisible.ch/" : "http://stats.invisible.ch/");
+      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script type="text/javascript">
+      try {
+      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 23);
+      piwikTracker.trackPageView();
+      piwikTracker.enableLinkTracking();
+      } catch( err ) {}
+      </script><noscript><p><img src="http://stats.invisible.ch/piwik.php?idsite=23" style="border:0" alt="" /></p></noscript>
+      <!-- End Piwik Tag -->
+        
