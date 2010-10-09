@@ -1,14 +1,13 @@
 ---
 title: Jobs and Career
 ---
-	<head>
+
 		<title>Jobs and Career</title>
 		<script type = "text/javascript">
-			alert('in the script');
 			function LPad(ContentToSize,PadLength,PadChar)
 			{
 				var PaddedString=ContentToSize.toString();
-				for(i=ContentToSize.length+1;I<=PadLength;i++)
+				for(i=ContentToSize.length+1;i<=PadLength;i++)
 				{
 					PaddedString=PadChar+PaddedString;
 				}
@@ -22,6 +21,7 @@ title: Jobs and Career
 				if (num != document.forms[form_id].elements[field_id].value)
 				{
 					alert('Invalid Number');
+					document.forms[form_id].elements[field_id].focus();
 					return false;
 				}
 				else
@@ -47,30 +47,32 @@ title: Jobs and Career
 					case 'October': ws_date="10"; break;
 					case 'November': ws_date="11"; break;
 					case 'December': ws_date="12"; break;
-					default ws_date="00"
-				}
-				var input = LPad(document.forms[form_id].elements[day_id].value,2,"0") + "/" + ws_date + "/" + document.forms[form_id].elements[year_id].value;
-				var validformat=/^\d{2}\/\d{2}\/\d{4}$/; //Basic check for format validity
+					default: ws_date="00";
+				}	
+				var input = ws_date + "/" + LPad(document.forms[form_id].elements[day_id].value,2,"0") + "/" + document.forms[form_id].elements[year_id].value;
+				var validformat=/\d{2}\/\d{2}\/\d{4}/; //Basic check for format validity
 				var returnval=false;
-				if (!validformat.test(input.value))
-					alert("Invalid Date Format. Please correct and submit again.");
+				if (!validformat.test(input))
+					alert("Invalid Date Format. Please correct and submit again. " + input);
 				else
 				{ //Detailed check for valid date ranges
-					var monthfield=input.value.split("/")[0];
-					var dayfield=input.value.split("/")[1];
-					var yearfield=input.value.split("/")[2];
+					var monthfield=parseInt(input.substr(0,2)); 
+					var dayfield=parseInt(input.substr(3,2)); 
+					var yearfield=parseInt(input.substr(6)); 
 					var dayobj = new Date(yearfield, monthfield-1, dayfield);
+					var today = new Date();
 					if ((dayobj.getMonth()+1!=monthfield)||(dayobj.getDate()!=dayfield)||(dayobj.getFullYear()!=yearfield))
-						alert("Invalid Day, Month, or Year range detected. Please correct and submit again.");
+						alert("Invalid Day, Month, or Year range detected. Please correct and submit again. " + input);
+					else if (dayobj < today)
+						alert("Date Must be Greater than " + today);
 					else
 						returnval=true;
 				}
-				if (returnval==false) input.select();
 				return returnval;
 			}
 		</script>
-	</head>
-	<body>
+		
+
 		<h2>Search for a Job</h2>
 		<form action='#' id='search-Jobs' method='get'>
 			<fieldset id='search-Job-fields'>
@@ -153,8 +155,8 @@ title: Jobs and Career
 				</div>
 			</fieldset>
 			<div class='buttons'>
-				<input class='submit' type='submit' value='Search' onclick = "javascript:return checkdate('search-Jobs','day','month','year');" /> 
-				<input class='clear' type='reset' value='Clear'/>
+				<input class='submit' type='submit' value='Search' onclick = "javascript:return checkdate('search-Jobs','day','month','year')" /> 
+				<!--<input class='clear' type='reset' value='Clear'/>   -->
 			</div>
 		</form>
 		<h2>List of jobs</h2>
@@ -186,4 +188,3 @@ title: Jobs and Career
 			</p>
 		  </li>
 		</ul>
-	</body>

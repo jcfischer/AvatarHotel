@@ -1,0 +1,42 @@
+:plain
+  <?php 
+    include('db.php');
+    include('form.php');
+    function link_to($code) {
+      $link = "<a href='show.php?id=" . $id . "'>" . h($id) . "</a>";
+      return $link;
+    }
+    open_db();
+    $number_of_rows = list_rows('feedback', 'id');
+  ?>
+%h1 Feedback Listing
+
+
+%table#list
+  %thead
+    %th Id
+    %th Name
+    %th Email
+    %th Subject
+  %tbody
+    :plain
+      <?php
+         $res = next_row();
+         while ($res == TRUE) {
+            $id = get_column_value('id');
+            $name = get_column_value('name');
+            $email = get_column_value('email');
+            $subject = get_column_value('subject');
+            echo("<tr>");
+            echo('<td>');
+            echo link_to($id);
+            echo('</td>');
+            echo show_cell($name);
+            echo show_cell($email);
+            echo show_cell($subject);
+            echo("</tr>");
+            $res = next_row();
+
+         }
+         close_db();
+      ?>

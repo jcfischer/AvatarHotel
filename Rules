@@ -81,6 +81,9 @@ route '/visiting/*/' do
   item.identifier.chop + "." + "php"
 end
 
+route '/admin/*/' do
+  item.identifier.chop + "." + "php"
+end
 route '*' do
   #  item.identifier.chop + "/index.php"
   item.identifier + 'index.html'

@@ -1,0 +1,68 @@
+:plain
+  <?php 
+    include('db.php');
+    include('form.php');
+    $id = "";
+    $name = "";
+    $subject = "";
+    $type = "";
+    $email = "";
+    $body = "";
+
+    $id = params('id');
+    open_db();
+    $found = select_row('feedbacks', 'id', $id);
+
+  ?>
+%h1 Show Feedback Details
+:plain
+  <?php if($found == TRUE) { ?> 
+%table#feedback
+  %thead
+    %th Field
+    %th Value
+  %tbody
+    :plain
+      <?php
+          $id = get_column_value('id');
+          $name = get_column_value('name');
+          $email = get_column_value('email');
+          $subject = get_column_value('subject');
+          $type = get_column_value('type');
+          $body = get_column_value('body');
+          echo "<tr>";
+          echo "<th>id</th>";
+          echo show_cell($id);
+          echo "</tr><tr>";
+          echo "<th>Name</th>";
+          echo show_cell($name);
+          echo "</tr><tr>";
+          echo "<th>Email</th>";
+          echo show_cell($email);
+          echo "</tr><tr>";
+          echo "<th>Type</th>";
+          echo show_cell($type);
+          echo "</tr><tr>";
+          echo "<th>Subject</th>";
+          echo show_cell($subject);
+          echo "</tr><tr>";
+          echo "<th>Body</th>";
+          echo show_cell($body);
+          echo "</tr>";
+      ?>
+:plain
+  <?php } else { ?>
+%p
+  No feedback found
+:plain
+  <?php 
+    }
+    close_db();
+  ?>
+%p
+  :plain
+  :plain
+    <a href="delete.php?id=<?php echo $id ?>">Delete</a>
+%p
+  %a{ :href => "list.php"} Back to List
+
