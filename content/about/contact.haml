@@ -1,7 +1,33 @@
 %h2 Contact Form
 
+:plain
+  <?php
+    include('../php/db.php');
+    include('../php/form.php');
+    $method = $_SERVER['REQUEST_METHOD'];
+    $posted = FALSE;
+    if($method == "POST") {
+      $name = params('name');
+      $email = params('email');
+      $type = params('type');
+      $subject = params('subject');
+      $body = params('body');
 
-%form{ :action => "#", :id => "contact", :method => "post"}
+      $values = array(
+        'name' => $name,
+        'email' => $email,
+        'type' => $type,
+        'subject' => $subject,
+        'body' => $body
+      );
+      // insert_row('feedbacks', $values);
+      $posted = TRUE;
+    }
+  ?> 
+
+:plain
+  <?php if($posted == FALSE) { ?>
+%form{ :action => "contact.php", :id => "contact", :method => "post"}
   %p.formNote * marks a required field
   %fieldset#contact-fields
     .field
@@ -26,5 +52,18 @@
       %textarea.required{ :id => 'body', :name => 'body', :cols => 70, :rows => 10}
   .buttons
     %input{ :class => "submit", :type => "submit", :value => "Submit"}
+:plain
+  <?php } else { ?>
+%p
+  Dear 
+  :plain
+    <?php echo $name ?>
+%p
+  Thank you for your comment. We will get back to you as soon as possible.
+%p
+  The Hotel staff
+
+:plain
+  <?php } ?>
 
 

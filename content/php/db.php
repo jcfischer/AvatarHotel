@@ -4,7 +4,7 @@
 // jcf, 9.10.2010
 //
 
-$dsn = "flamingo";
+$dsn = "avatarhotel";
 $dbConn = "";
 $dbResult = "";
 
