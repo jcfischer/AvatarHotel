@@ -20,6 +20,9 @@ end
 compile '/gallery/*/' do
 end
 
+compile '/php/*/' do
+end
+
 compile '/javascripts/*/' do
   nil
 end
@@ -54,6 +57,10 @@ route '/stylesheet/' do
   '/style.css'
 end
 
+route '/php/*' do
+  item.identifier.chop + "." + item[:extension]
+end
+
 route '/images/*/' do
   item.identifier.chop + "." + item[:extension]
 end
@@ -66,7 +73,16 @@ route '/javascripts/*/' do
   item.identifier.chop + "." + item[:extension]
 end
 
+route '/about/*/' do
+  item.identifier.chop + "." + "php"
+end
+
+route '/visiting/*/' do
+  item.identifier.chop + "." + "php"
+end
+
 route '*' do
+  #  item.identifier.chop + "/index.php"
   item.identifier + 'index.html'
 end
 layout '*', :haml
