@@ -72,12 +72,25 @@
                      }
                    }); 
                    return submitable;
-                } 
+                },
+    setup : function(form) {
+               var fields =$([]).add(form.elements)
+                                .filter(':input')
+                                .not(':submit, :reset');
+               fields.each(function(index, field){
+                 $(field).bind('focus', function() {
+                    $(this).addClass('focusBorder');
+                 }).bind('blur', function() {
+                    $(this).removeClass('focusBorder');
+                 })
+               })
+            }
   };
   $.fn.validate = function() {
     return this.each(function(){
       // $this holds our form
       var $this = $(this);
+      methods.setup(this);
       $this.bind('submit',  methods.check_form );
 
     });
