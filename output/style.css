@@ -367,14 +367,6 @@ form {
     padding: 2px 12px;
     font-weight: bold;
     color: #eeeeee; }
-  form input.clear {
-    font-family: "Helvetica Neue", arial, helvetica, sans-serif;
-    font-size: 0.875em;
-    border: 2px solid #a59690;
-    background: #a59690;
-    padding: 2px 12px;
-    font-weight: bold;
-    color: #eeeeee; }
    form .fieldError {
      background: #f2d10e;
      border: 2px solid #ccb13e;
