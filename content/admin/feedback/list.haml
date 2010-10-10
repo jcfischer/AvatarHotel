@@ -7,7 +7,7 @@
       return $link;
     }
     open_db();
-    $number_of_rows = list_rows('feedback', 'id');
+    $number_of_rows = list_rows('feedback', 'Comment_Id');
   ?>
 %h1 Feedback Listing
 
@@ -23,10 +23,10 @@
       <?php
          $res = next_row();
          while ($res == TRUE) {
-            $id = get_column_value('id');
-            $name = get_column_value('name');
+            $id = get_column_value('Comment_Id');
+            $name = get_column_value('Name_EN');
             $email = get_column_value('email');
-            $subject = get_column_value('subject');
+            $subject = get_column_value('Subject');
             echo("<tr>");
             echo('<td>');
             echo link_to($id);
@@ -39,4 +39,4 @@
 
          }
          close_db();
-      ?>
+      ?
