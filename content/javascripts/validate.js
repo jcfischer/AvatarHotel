@@ -29,11 +29,9 @@
     check_form : function(){
                    var submitable = true;
                    // retrieve all inputs of the form, minus the buttons
-                   console.log(this);
                    var fields =$([]).add(this.elements)
                                     .filter(':input')
                                     .not(':submit, :reset');
-                   console.log(fields);
                    // check each field, see if it's css class
                    // is registred as a function handler
                    // and execute it
