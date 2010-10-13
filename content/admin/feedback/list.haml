@@ -1,17 +1,23 @@
 :plain
   <?php 
-    include('db.php');
-    include('form.php');
+    include('../../php/db.php');
+    include('../../php/form.php');
     function link_to($code) {
       $link = "<a href='show.php?id=" . $id . "'>" . h($id) . "</a>";
       return $link;
     }
-    open_db();
-    $number_of_rows = list_rows('feedback', 'Comment_Id');
+    if (open_db()) {
+      $number_of_rows = list_rows('feedback', 'Comment_Id');
+    } else 
+    { $failure = TRUE; }
+
   ?>
 %h1 Feedback Listing
 
-
+:plain
+  <?php
+    if (!$failure) {
+  ?>
 %table#list
   %thead
     %th Id
@@ -39,4 +45,12 @@
 
          }
          close_db();
-      ?
+      ?>
+:plain
+  <?php } else { ?>
+.error
+  %p
+    Could not connect to the database
+
+:plain
+  <?php } ?>

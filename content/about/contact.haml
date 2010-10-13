@@ -14,7 +14,9 @@
       $body = params('body');
 
       $values = array(
-        'name_EN' => $name,
+        'name_EN' => array(
+           'type' => 'string',
+           'value' => $name),
         'email' => $email,
         'type' => $type,
         'Subject' => $subject,

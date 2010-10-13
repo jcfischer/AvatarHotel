@@ -17,7 +17,11 @@ $dbResult = "";
 function open_db() {
   global $dsn, $dbConn;
   $dbConn = odbc_connect($dsn, "","");
-  return true;
+  if ($dbConn == FALSE) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 // close the db
