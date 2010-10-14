@@ -6,6 +6,14 @@ $(document).ready(function(){
   $('#search_room').validate();
 
 
+  // Google Map
+  //
+  $('#map').gMap({ markers: [{ latitude: 21.128685, 
+                              longitude: -157.296238,
+                              html: "Location of Avatar Hotel, Moloka'i", 
+                              popup: true }],
+                  zoom: 9 });
+
   $('ul.gallery li a').each(function(){
     var path = $(this).attr('href');
     var thumbnail = $("<img>", { src: path }).addClass("thumbnail"); 

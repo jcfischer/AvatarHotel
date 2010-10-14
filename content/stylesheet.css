@@ -431,4 +431,9 @@ form {
     cursor: default;
 }
 
-  
+#map {
+  width: 547px; 
+  height: 320px; 
+  border: 1px solid #777;
+  overflow: hidden;
+}
