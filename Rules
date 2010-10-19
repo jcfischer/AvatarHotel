@@ -10,6 +10,9 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
+compile '/Database/*/' do
+end
+
 compile '/stylesheet/' do
   # don’t filter or layout
   filter :relativize_paths, :type => :css

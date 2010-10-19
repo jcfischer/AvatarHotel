@@ -70,6 +70,11 @@ title: Jobs and Career
 				}
 				return returnval;
 			}
+			validate_form()
+			{
+				if (!checkdate('search-Jobs','day','month','year')) return false;
+				return true;
+			}
 		</script>
 		
 
@@ -155,7 +160,7 @@ title: Jobs and Career
 				</div>
 			</fieldset>
 			<div class='buttons'>
-				<input class='submit' type='submit' value='Search' onclick = "javascript:return checkdate('search-Jobs','day','month','year')" /> 
+				<input class='submit' type='submit' value='Search' onclick = "validate_form()" /> 
 				<!--<input class='clear' type='reset' value='Clear'/>   -->
 			</div>
 		</form>
