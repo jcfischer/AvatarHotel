@@ -9,8 +9,10 @@
     </title>
     <link href='../style.css' media='screen' rel='stylesheet' type='text/css' />
     <meta content='nanoc 3.1.5' name='generator' />
-    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' type='text/javascript'></script>
+    <script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAUq9pOIcxDbT1XNSLwp_OkBRvSOSac0aUQ-l50OmTVFr4ntqXehSzq_pfXR_BdMUsmMzYWag1KA90JA' type='text/javascript'></script>
+    <script src='../javascripts/jquery.js' type='text/javascript'></script>
     <script src='../javascripts/validate.js' type='text/javascript'></script>
+    <script src='../javascripts/gmap.js' type='text/javascript'></script>
     <script src='../javascripts/site.js' type='text/javascript'></script>
     <!-- Groupwork for the Course "Programming the Internet" -->
     <!-- University of Liverpool, 2010 -->
@@ -29,16 +31,16 @@
             <a href="../about/">About Avatar</a>
             <ul>
               <li>
-                <a href="../about/company/">About the company</a>
+                <a href="../about/company.php">About the AvatarHotel</a>
               </li>
               <li>
-                <a href="../about/contact/">Contact</a>
+                <a href="../about/contact.php">Contact</a>
               </li>
               <li>
-                <a href="../about/jobs/">Jobs and Career</a>
+                <a href="../about/jobs.php">Jobs and Career</a>
               </li>
               <li>
-                <a href="../about/social_media/">Social Media</a>
+                <a href="../about/social_media.php">Social Media</a>
               </li>
             </ul>
           </li>
@@ -52,16 +54,13 @@
             <a href="../visiting/">Visiting</a>
             <ul class='last'>
               <li>
-                <a href="../visiting/accomodations/">Accomodations</a>
+                <a href="../visiting/accomodations.php">Accomodations</a>
               </li>
               <li>
-                <a href="../visiting/business/">Business</a>
+                <a href="../visiting/business.php">Business</a>
               </li>
               <li>
-                <a href="../visiting/meetings/">Meetings</a>
-              </li>
-              <li>
-                <a href="../visiting/spa/">Spa</a>
+                <a href="../visiting/spa.php">Spa</a>
               </li>
             </ul>
           </li>
@@ -161,6 +160,9 @@
           tastes, the island, set in its turquoise sea, is an oasis of peace and tranquillity. Avatar, a melting 
           pot where past and present are smoothly blended together, offers an essential beauty that will compel 
           to return to its shores time and time again. May your stay with us remain engraved in your memory forever.</p>
+          <div id="map">
+          
+          </div>
         </div>
         <div class='clear'></div>
       </div>
@@ -175,9 +177,9 @@
                 223 Sunshine Boulevard
               </div>
               <span class='postal-code'>92111</span>
-              <span class='locality'>San Pixelato</span>
+              <span class='locality'>Moloka'i</span>
               <div class='country-name'>
-                New Numa
+                Hawaii
               </div>
               <div class='tel'>
                 +41 99 223 22 42
@@ -194,5 +196,23 @@
         </div>
       </div>
     </div>
+    <script type='text/javascript'>
+      //<![CDATA[
+        <!-- Piwik -->
+        var pkBaseURL = (("https:" == document.location.protocol) ? "https://stats.invisible.ch/" : "http://stats.invisible.ch/");
+        document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+        try {
+        var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 23);
+        piwikTracker.trackPageView();
+        piwikTracker.enableLinkTracking();
+        } catch( err ) {}
+      //]]>
+    </script>
+    <noscript>
+      <p>
+        <img alt='' src='http://stats.invisible.ch/piwik.php?idsite=23' style='border:0' />
+      </p>
+    </noscript>
   </body>
 </html>

@@ -377,6 +377,12 @@ form {
      color: #403a3f;
      padding: 0;
    }
+   form .focusBorder {
+     border: 2px solid grey; 
+   }
+   form .formNote {
+     font-size: 0.675em; 
+   }
   /* Gallery styles */
 #image {
     width: 596px;
@@ -425,4 +431,9 @@ form {
     cursor: default;
 }
 
-  
+#map {
+  width: 547px; 
+  height: 320px; 
+  border: 1px solid #777;
+  overflow: hidden;
+}
