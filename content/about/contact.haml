@@ -17,12 +17,14 @@
         'name_EN' => array(
            'type' => 'string',
            'value' => $name),
-        'email' => $email,
-        'type' => $type,
-        'Subject' => $subject,
-        'Message' => $body
+        'email' => array('type' => 'string', 'value' => $email),
+        'Comment_Type_Id' => array('type' => 'number', 'value' => $type),
+        'Subject' => array('type' => 'string', 'value' => $subject),
+        'Message' => array('type' => 'string', 'value' => $body)
       );
-      // insert_row('feedbacks', $values);
+      open_db();
+      insert_row('Customer_Comments', $values);
+      close_db();
       $posted = TRUE;
     }
   ?> 
@@ -41,11 +43,11 @@
     .field
       %label{ :for => "type"} Type *
       %select{ :id => 'type', :name => "type" }
-        %option Reservation
-        %option Cancelation
-        %option Praise
-        %option Complaint
-        %option Other
+        %option{:value => 1} Reservation
+        %option{:value => 2} Cancelation
+        %option{:value => 3} Praise
+        %option{:value => 4} Complaint
+        %option{:value => 5} Other
     .field
       %label{ :for => "subject"} Subject *
       %input.required{ :id => "subject", :name => "subject", :type => "text", :size => 40 }

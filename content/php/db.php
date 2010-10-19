@@ -45,7 +45,7 @@ function list_rows($table, $order) {
 // use 'get_column_value' to get a result columns
 function select_row($table, $column, $value) {
   global $dbConn, $dbResult;
-  $sql = "select * from " . $table . " WHERE " . $column . " = '" . $value . "'";
+  $sql = "select * from " . $table . " WHERE " . $column . " = " . $value ;
   $dbResult = odbc_exec($dbConn, $sql);
   $res = odbc_fetch_row($dbResult);
   return $res;
@@ -89,7 +89,7 @@ function insert_row($table, $values) {
   }
   $sql .= "(" . implode(", ", $columns) . ") ";
   $sql .= " VALUES (" . implode(", ", $vals) . ")";
-  // echo $sql;
+  echo $sql;
   $dbResult = odbc_exec($dbConn, $sql);
 }
 

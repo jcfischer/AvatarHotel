@@ -1,7 +1,7 @@
 :plain
   <?php 
-    include('db.php');
-    include('form.php');
+    include('../../php/db.php');
+    include('../../php/form.php');
     $id = "";
     $name = "";
     $subject = "";
@@ -11,12 +11,12 @@
 
     $id = params('id');
     open_db();
-    $found = select_row('feedbacks', 'Comment_Id', $id);
+    $found = select_row('Customer_Comments', 'Comment_Id', $id);
 
   ?>
 %h1 Show Feedback Details
 :plain
-  <?php if($found == TRUE) { ?> 
+  <?php if(!$found == FALSE) { ?> 
 %table#feedback
   %thead
     %th Field
@@ -28,7 +28,7 @@
           $name = get_column_value('Name_EN');
           $email = get_column_value('email');
           $subject = get_column_value('Subject');
-          // $type = get_column_value('type');
+          $type = get_column_value('Comment_Type_Id');
           $body = get_column_value('Message');
           echo "<tr>";
           echo "<th>id</th>";
@@ -41,7 +41,7 @@
           echo show_cell($email);
           echo "</tr><tr>";
           echo "<th>Type</th>";
-          // echo show_cell($type);
+          echo show_cell($type);
           echo "</tr><tr>";
           echo "<th>Subject</th>";
           echo show_cell($subject);

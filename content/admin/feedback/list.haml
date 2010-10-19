@@ -2,12 +2,13 @@
   <?php 
     include('../../php/db.php');
     include('../../php/form.php');
-    function link_to($code) {
+    $failure = FALSE;
+    function link_to($id) {
       $link = "<a href='show.php?id=" . $id . "'>" . h($id) . "</a>";
       return $link;
     }
     if (open_db()) {
-      $number_of_rows = list_rows('feedback', 'Comment_Id');
+      $number_of_rows = list_rows('Customer_Comments', 'Comment_Id');
     } else 
     { $failure = TRUE; }
 
