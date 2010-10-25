@@ -1,0 +1,56 @@
+:plain
+  <?php 
+    include('../../php/db.php');
+    include('../../php/form.php');
+    function link_to($code) {
+      $link = "<a href='show.php?id=" . $id . "'>" . h($id) . "</a>";
+      return $link;
+    }
+    if (open_db()) {
+      $number_of_rows = list_rows('Job_Openings', 'Job_Reference_Id');
+    } else 
+    { $failure = TRUE; }
+
+  ?>
+%h1 Jobs Listing
+
+:plain
+  <?php
+    if (!$failure) {
+  ?>
+%table#list
+  %thead
+    %th Id
+    %th Name
+    %th Email
+    %th Subject
+  %tbody
+    :plain
+      <?php
+         $res = next_row();
+         while ($res == TRUE) {
+            $id = get_column_value('Comment_Id');
+            $name = get_column_value('Name_EN');
+            $email = get_column_value('email');
+            $subject = get_column_value('Subject');
+            echo("<tr>");
+            echo('<td>');
+            echo link_to($id);
+            echo('</td>');
+            echo show_cell($name);
+            echo show_cell($email);
+            echo show_cell($subject);
+            echo("</tr>");
+            $res = next_row();
+
+         }
+         close_db();
+      ?>
+:plain
+  <?php } else { ?>
+.error
+  %p
+    Could not connect to the database
+
+:plain
+  <?php } ?>
