@@ -1,7 +1,11 @@
 ---
 title: Jobs and Career
 ---
-
+<?php
+    include('../php/db.php');
+    include('../php/form.php');
+    $method = $_SERVER['REQUEST_METHOD'];
+  ?> 
 		<title>Jobs and Career</title>
 		<script type = "text/javascript">
 			function LPad(ContentToSize,PadLength,PadChar)
@@ -70,10 +74,18 @@ title: Jobs and Career
 				}
 				return returnval;
 			}
-			validate_form()
+			
+			function validate_form()
 			{
-				if (!checkdate('search-Jobs','day','month','year')) return false;
-				return true;
+				
+				if (!checkdate('search-Jobs','day','month','year')) 
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
 			}
 		</script>
 		
@@ -96,11 +108,7 @@ title: Jobs and Career
 				<div class='field'>
 					<label for='job_category'>Category</label>
 					<select id='job_category' name='job_category'>
-						<option>Information Technology</option>
-						<option>House Cleaning</option>
-						<option>Management</option>
-						<option>Catering</option>
-						<option>Hospitality</option>
+						<?php open_db(); echo list_job_types();  close_db(); ?>
 					</select>
 				</div>
 				<div class='field'>

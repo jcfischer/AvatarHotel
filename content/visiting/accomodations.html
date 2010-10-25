@@ -1,6 +1,11 @@
 ---
 title: Accomodations
 ---
+<?php
+    include('../php/db.php');
+    include('../php/form.php');
+    $method = $_SERVER['REQUEST_METHOD'];
+  ?> 
 	<title>Accomodations</title>
 	<script type = "text/javascript">
 			function LPad(ContentToSize,PadLength,PadChar)
@@ -76,11 +81,7 @@ title: Accomodations
 		<div class='field'>
 		  <label for='room_category'>Category</label>
 		  <select id='room_category' name='room_category'>
-			<option>Pent House</option>
-			<option>Suite</option>
-			<option>Double</option>
-			<option>Single</option>
-			<option>HoneyMoon</option>
+			<?php open_db(); echo list_room_types();  close_db(); ?>
 		  </select>
 		</div>
 		<div class='field'>
