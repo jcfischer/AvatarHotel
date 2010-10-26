@@ -125,5 +125,45 @@ function get_column_value($column) {
   return odbc_result($dbResult, $column);
 }
 
-?>
 
+//build a form automatically
+function form_edit($table,$primary_key,$value) {
+	global $dsn, $dbConn;
+	open_db();
+	$tabs = odbc_tables($dbConn);
+	$tables = array();
+	while (odbc_fetch_row($tabs)){
+		if (odbc_result($tabs,"TABLE_TYPE")=="TABLE") {
+			$table_name = odbc_result($tabs,"TABLE_NAME");
+				if ($table_name == $table) {
+					$tables["{$table_name}"] = array();
+					$cols = odbc_exec($dbConn,'select * from `'.$table_name.'` where ' . $primary_key . ' = ' . $value );
+					$ncols = odbc_num_fields($cols);
+					echo "<form action='#' id=" . $table . "'_form' method='get'>\n";
+					echo "<fieldset id='edit-fields-". $table ."'>\n";
+					for ($n=1; $n<=$ncols; $n++) {
+						$field_name = odbc_field_name($cols, $n);
+						echo "<div class='field'>\n";
+						echo "<label for='". $field_name ."'>". $field_name ."</label>\n";
+						if (odbc_field_len($cols,$n)>50) {$field_len = 50;} 
+						else {$field_len = odbc_field_len($cols,$n);}
+						echo "<input class='required number' id='". $field_name ."' size='". $field_len ."' type='text' value ='". odbc_result($cols,$field_name) ."' />\n";
+						echo "</div>\n";
+					}
+				echo "</fieldset>\n";
+				echo "<div class='buttons'>\n";
+				echo "<input class='submit' type='submit' value='Search' />\n";
+				echo "</div>\n";
+				echo "</form>";
+				}
+		}
+	}
+	/*
+	$outval = odbc_columns($dbConn,'%','%', 'Job_Openings', '%');
+	odbc_result_all($outval);
+	*/
+	close_db();
+	//print_r($tables);
+return true;
+}
+?>
