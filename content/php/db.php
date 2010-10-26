@@ -125,5 +125,43 @@ function get_column_value($column) {
   return odbc_result($dbResult, $column);
 }
 
+//build a form automatically
+function form_edit($table,$primary_key,$value) {
+	global $dsn, $dbConn;
+	
+	
+return true;
+}
+
+function list_tables() {
+	global $dsn, $dbConn;
+	open_db();
+	$tabs = odbc_tables($dbConn);
+	$tables = array();
+	echo('<table border="1" cellpadding="10">');
+	echo('<thead>');
+	echo('<tr>');
+	echo('<th> Table </th>');
+	echo('<th colspan="4"> Action </th>');
+	echo('</tr>');
+	echo('</thead>');
+	echo('<tbody>');
+	while (odbc_fetch_row($tabs)){
+		if (odbc_result($tabs,"TABLE_TYPE")=="TABLE") {
+			$table_name = odbc_result($tabs,"TABLE_NAME");
+			echo('<tr>');
+			echo('<td>' . $table_name . '</td>');
+            echo('<td> <a href="list.php?id=' . $table_name . '"> List </a> </td>');
+			echo('<td> <a href="add.php?id=' . $table_name . '"> Add </a> </td>');
+			echo('<td> <a href="update.php?id=' . $table_name . '"> Update </a> </td>');
+			echo('<td> <a href="delete.php?id=' . $table_name . '"> Delete </a> </td>');
+			echo('</tr>');
+		}
+	}
+	echo('</tbody>');
+	echo('</table>');
+	close_db();
+return true;
+}
 ?>
 
