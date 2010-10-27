@@ -7,9 +7,9 @@
 			$method = $_SERVER['REQUEST_METHOD'];
             $posted = FALSE;
 			$table = params('table');
-			echo("Value of Table: " . $table);
-			
             if($method == "POST") {
+			$table = params('table');
+			echo $table;
               if ($table == 'Comment_Types') {
               $values = array(
                 'Desc_En' => array('type' => 'string','value' => params('Desc_En')));
@@ -41,10 +41,10 @@
               $values = array(
                 'Job_Type_Id' => array('type' => 'number','value' => params('Job_Type_Id')),
                 'Job_Title' => array('type' => 'string', 'value' => params('Job_Title')),
-                'Desc_En' => array('type' => 'number', 'value' => params('Desc_En')),
+                'Desc_En' => array('type' => 'string', 'value' => params('Desc_En')),
                 'Skills' => array('type' => 'string', 'value' => params('Skills')),
-                'Date_Opened' => array('type' => 'date', 'value' => params('Date_Opened')),
-				'Date_Closed' => array('type' => 'date', 'value' => params('Date_Closed')));
+                'Date_Opened' => array('type' => 'string', 'value' => params('Date_Opened')),
+				'Date_Closed' => array('type' => 'string', 'value' => params('Date_Closed')));
 				}
 				else if ($table == 'Job_Types') {
               $values = array(
@@ -52,7 +52,7 @@
 				}
 				else if ($table == 'Reserved_Rooms') {
               $values = array(
-                'Reservied_Date' => array('type' => 'date','value' => params('Reservied_Date')),
+                'Reservied_Date' => array('type' => 'string','value' => params('Reservied_Date')),
                 'Customer_ID' => array('type' => 'number', 'value' => params('Customer_ID')),
                 'Rent_Rate' => array('type' => 'number', 'value' => params('Rent_Rate')));
 				}
@@ -67,13 +67,17 @@
               $posted = TRUE;
             }
           ?>
-          <?php 
-            if($posted == FALSE) { 
-              form_add($table); 
-            } else { 
-          ?>
+          <?php if($posted == FALSE) { ?>
+          <?php  form_add($table); ?>
+          <?php } else { ?>
           <p>
             Addition complete
           </p>
+		  <p>
+			<?php echo('<a href="new.php?table=' . $table . '">Add another</a>'); ?>
+		 </p>
           <?php } ?>
         </div>
+<p>
+   <a href='table_list.php'>Back to Table List</a>
+</p>

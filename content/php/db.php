@@ -30,12 +30,15 @@ function close_db() {
   odbc_close($dbConn);
 }
 
-// lista all rows in table, using the $order 
+// list all rows in table, using the $order 
 
-function list_rows($table, $order) {
+function list_rows($table, $order, $conditions = "") {
   global $dbConn, $dbResult;
-
-  $sql = "select * from " . $table . " ORDER BY " . $order;
+  $where = "";
+  if ($conditions != "") {
+    $where .= " WHERE " . $conditions;
+  }
+  $sql = "select * from " . $table .  $where . " ORDER BY " .$order ;
   echo $sql;
   $dbResult = odbc_exec($dbConn, $sql);
   return odbc_num_rows($dbResult);
@@ -83,7 +86,6 @@ function update_row($table, $primary_key, $id, $values) {
   }
   $sql .= implode(", ", $inserts);
   $sql .= " WHERE " . $primary_key . "='" . $id . "'";
-  // echo $sql;
   $dbResult = odbc_exec($dbConn, $sql);
   return $dbResult;
 }
@@ -106,7 +108,6 @@ function insert_row($table, $values) {
   }
   $sql .= "(" . implode(", ", $columns) . ") ";
   $sql .= " VALUES (" . implode(", ", $vals) . ")";
-  echo $sql;
   $dbResult = odbc_exec($dbConn, $sql);
 }
 
@@ -125,8 +126,11 @@ function quote_value($type, $value) {
 //
 function delete_row($table, $primary_key, $id) {
   global $dbConn, $dbResult;
-  $sql = "DELETE FROM " . $table . " WHERE " . $primary_key . "='" . $id ."'";
+  open_db();
+  $sql = "DELETE * from " . $table . " WHERE " . $primary_key . "=" . $id ;
+  echo $sql;
   $dbResult = odbc_exec($dbConn, $sql);
+  close_db();
 }
 
 // fetch the next row of a result set
@@ -154,19 +158,19 @@ function form_edit($table,$primary_key,$value) {
 					$tables["{$table_name}"] = array();
 					$cols = odbc_exec($dbConn,'select * from `'.$table_name.'` where ' . $primary_key . ' = ' . $value );
 					$ncols = odbc_num_fields($cols);
-					echo "<form action='update.php' id='" . $table . "_form' method='POST'>";
-					echo "<fieldset id='edit-fields-". $table ."'>\n";
+					echo '<form action="edit.php?table=' . $table. '&pk=' . $primary_key . '&id=' . $value . '" id="' . $table . '_form" method="POST">';
+					echo '<fieldset id="edit-fields-'. $table .'">';
 					for ($n=1; $n<=$ncols; $n++) {
 						$field_name = odbc_field_name($cols, $n);
-						echo "<div class='field'>\n";
-						echo "<label for='". $field_name ."'>". $field_name ."</label>\n";
+						echo '<div class="field">';
+						echo '<label for="'. $field_name .'">'. $field_name .'</label>';
 						if (odbc_field_len($cols,$n)>50) {$field_len = 50;} 
 						else {$field_len = odbc_field_len($cols,$n);}
 						if ($n==1) {
-							echo "<input class='required number' id='". $field_name ."' size='". $field_len ."' type='text' disabled='disabled' readonly='readonly' value ='". odbc_result($cols,$field_name) ."' />\n";
+							echo '<input class="required number" id="'. $field_name .'" name="'. $field_name .'" size="'. $field_len .'" type="text" disabled="disabled" readonly="readonly" value ="'. odbc_result($cols,$field_name) .'" />';
 						}
 						else {
-							echo "<input class='required number' id='". $field_name ."' size='". $field_len ."' type='text' value ='". odbc_result($cols,$field_name) ."' />\n";
+							echo '<input class="required number" id="'. $field_name .'" name="'. $field_name .'" size="'. $field_len .'" type="text" value ="'. odbc_result($cols,$field_name) .'" />';
 						}
 						echo "</div>\n";
 					}
@@ -184,6 +188,7 @@ function form_edit($table,$primary_key,$value) {
 return true;
 }
 
+
 //build a form automatically for update
 function form_add($table) {
 	global $dsn, $dbConn;
@@ -197,17 +202,15 @@ function form_add($table) {
 					$tables["{$table_name}"] = array();
 					$cols = odbc_exec($dbConn,'select * from '.$table_name.' where 1=2');
 					$ncols = odbc_num_fields($cols);
-          echo("<p>" . $table . "</p>");
-					echo "<form action='new.php' id='" . $table . "_form' method='POST'>";
-            echo "<fieldset id='edit-fields-". $table ."'>\n";
-            echo('<input type="hidden" name="table" id="table" value="' . $table .'"');
+					echo "<form action='new.php?table=" . $table . "' id='" . $table . "_form' method='POST'>";
+					echo "<fieldset id='edit-fields-". $table ."'>\n";
 					for ($n=1; $n<=$ncols; $n++) {
 						$field_name = odbc_field_name($cols, $n);
 						echo "<div class='field'>\n";
 						echo "<label for='". $field_name ."'>". $field_name ."</label>\n";
 						if (odbc_field_len($cols,$n)>50) {$field_len = 50;} 
 						else {$field_len = odbc_field_len($cols,$n);}
-						echo "<input class='required number' name='" . $field_name . "' id='". $field_name ."' size='". $field_len ."' type='text' />\n";
+						echo "<input class='required number' id='". $field_name ."' name='". $field_name ."' size='". $field_len ."' type='text' />\n";
 						echo "</div>\n";
 					}
 				echo "<div class='field'>\n";
@@ -233,7 +236,7 @@ function list_tables() {
 	echo('<thead>');
 	echo('<tr>');
 	echo('<th> Table </th>');
-	echo('<th> Action </th>');
+	echo('<th colspan="4"> Action </th>');
 	echo('</tr>');
 	echo('</thead>');
 	echo('<tbody>');
@@ -242,9 +245,8 @@ function list_tables() {
 			$table_name = odbc_result($tabs,"TABLE_NAME");
 			echo('<tr>');
 			echo('<td>' . $table_name . '</td>');
-            echo('<td> <a href="list.php?table=' . $table_name . '"> List </a> ');
-            echo("&nbsp;|&nbsp;");
-			echo('<a href="new.php?table=' . $table_name . '"> Add </a> </td>');
+            echo('<td width="20"> <a href="list.php?table=' . $table_name . '"> List </a> </td>');
+			echo('<td width="20"> <a href="new.php?table=' . $table_name . '"> Add </a> </td>');
 			echo('</tr>');
 		}
 	}
