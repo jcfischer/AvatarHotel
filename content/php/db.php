@@ -255,4 +255,26 @@ function list_tables() {
 	close_db();
 return true;
 }
+function list_job_types(){
+global $dsn, $dbConn;
+	open_db();
+	$sql = "select job_type_id, desc_en from job_types order by desc_en";
+	$dbResult = odbc_exec($dbConn, $sql);
+	while (odbc_fetch_row($dbResult)){
+		echo('<option label="'.odbc_result($dbResult,"desc_en").'">'.odbc_result($dbResult,"job_type_id").'</option>');
+		}
+	close_db();
+return true;
+}
+function list_room_types(){
+	global $dsn, $dbConn;
+	open_db();
+	$sql = "select room_type_id, desc_en from room_types order by desc_en";
+	$dbResult = odbc_exec($dbConn, $sql);
+	while (odbc_fetch_row($dbResult)){
+		echo('<option label="'.odbc_result($dbResult,"desc_en").'">'.odbc_result($dbResult,"room_type_id").'</option>');
+		}
+	close_db();
+return true;
+}
 ?>
