@@ -190,7 +190,7 @@ function form_add($table) {
 						echo "<label for='". $field_name ."'>". $field_name ."</label>\n";
 						if (odbc_field_len($cols,$n)>50) {$field_len = 50;} 
 						else {$field_len = odbc_field_len($cols,$n);}
-						echo "<input class='required number' id='". $field_name ."' size='". $field_len ."' type='text' />\n";
+						echo "<input class='required number' name='" . $field_name . "' id='". $field_name ."' size='". $field_len ."' type='text' />\n";
 						echo "</div>\n";
 					}
 				echo "<div class='field'>\n";
