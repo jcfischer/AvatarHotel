@@ -5,10 +5,11 @@ title: Jobs and Career
     include('../php/db.php');
     include('../php/form.php');
     $method = $_SERVER['REQUEST_METHOD'];
+    $stitle = params('Job_Title');
+    $sdesc = params('Desc_EN');
+    $sskills = params('Skills');
+    $scategory = params('Job_Type_Id');
     open_db();
-    $number_of_rows = list_rows('Job_Openings', '1');
-    echo "<br/>";
-    echo "Found: " . $number_of_rows;
     
   ?> 
 		<title>Jobs and Career</title>
@@ -100,19 +101,22 @@ title: Jobs and Career
 			<fieldset id='search-Job-fields'>
 				<div class='field'>
 				  <label for='Job_Title'>Job Title</label>
-				  <input id='Job_Title' name='Job_Title' size='20' type='text' />
+				  <input id='Job_Title' name='Job_Title' size='20' type='text'
+          value="<?php echo($stitle) ?>" />
 				</div>
 				<div class='field'>
 				  <label for='Desc_EN'>Description</label>
-				  <input id='Desc_EN' name="Desc_EN" size='50' type='text' />
+				  <input id='Desc_EN' name="Desc_EN" size='50' type='text' value="<?php
+          echo($sdesc) ?>"/>
 				</div>
 				<div class='field'>
 				  <label for='Skills'>Skills</label>
-				  <input id='Skills' name="Skills" size='50' type='text' />
+				  <input id='Skills' name="Skills" size='50' type='text' value="<?php
+          echo($sskills) ?>"/>
 				</div>
 				<div class='field'>
-					<label for='Job_Type_ID'>Category</label>
-					<select id='Job_Type_ID' name='Job_Type_ID'>
+					<label for='Job_Type_Id'>Category</label>
+					<select id='Job_Type_Id' name='Job_Type_Id'>
             <?php
               echo(options_for_select('Job_Types', 'Job_Type_Id', 'Desc_EN',
               TRUE));
@@ -126,12 +130,27 @@ title: Jobs and Career
 			</div>
 		</form>
     <h2>List of jobs</h2>
-
-
       <ul id='job_list'>
-          <?php
-             $res = next_row();
-             while ($res == TRUE) {
+        <?php
+        // prepare search
+
+          $conditions = array();
+          if ($stitle != "" ) {
+            array_push($conditions, "Job_Title LIKE '%" . $stitle . "%'" );
+          }
+          if ($sdesc != "" ) {
+            array_push($conditions, "Desc_EN LIKE '%" . $sdesc . "%'" );
+          }
+          if ($sskills != "" ) {
+            array_push($conditions, "Skills LIKE '%" . $sskills . "%'" );
+          }
+          if ($scategory != "" ) {
+            array_push($conditions, "Job_Type_Id = " . $scategory  );
+          }
+          $conditions = implode(" AND ", $conditions);
+             $number_of_rows = list_rows('Job_Openings', 'Job_Title',
+             $conditions);
+             while (next_row()) {
                 $title = get_column_value('Job_Title');
                 $desc = get_column_value('Desc_EN');
                 $skills = get_column_value('Skills');
@@ -146,8 +165,6 @@ title: Jobs and Career
                     echo h($skills);
                   echo("</p>");
                 echo("</li>\n");
-                $res = next_row();
-
              }
              close_db();
              ?>
