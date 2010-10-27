@@ -9,8 +9,14 @@ function h($value) {
 // this works both for GET and POST requests
 // the value is sanitized to protect against
 // xss attaacks
+
 function params($key) {
-  $value = $_REQUEST[$key];
+  if (isset($_REQUEST[$key])) {
+    $value = $_REQUEST[$key];
+  } else
+  {
+    $value = "";
+  }
   return h($value);
 }
 
