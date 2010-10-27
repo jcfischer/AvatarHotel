@@ -1,7 +1,7 @@
 <?php
-
+// Based on the 
 // Database module for IN, Week6, HA
-// jcf, 9.10.2010 - 13.10.2010
+// jcf, 9.10.2010 - 28.10.2010
 //
 
 include("dbinfo.php");
@@ -38,6 +38,19 @@ function list_rows($table, $order) {
   $sql = "select * from " . $table . " ORDER BY " . $order;
   $dbResult = odbc_exec($dbConn, $sql);
   return odbc_num_rows($dbResult);
+}
+
+function options_for_select($table, $id_field, $value_field) {
+  global $dbConn, $dbResult;
+  $sql = "select " . $id_field . ", " . $value_field . " from " . $table . " ORDER BY " . $value_field;
+  $dbResult = odbc_exec($dbConn, $sql);
+  $options = "";
+  while (next_row()) {
+    $options .= '<option value="' . get_column_value($id_field) . '">';
+    $options .= get_column_value($value_field);
+    $options .= "</option>\n";
+  }
+  return $options;
 }
 
 // selects one row 

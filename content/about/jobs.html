@@ -108,7 +108,10 @@ title: Jobs and Career
 				<div class='field'>
 					<label for='job_category'>Category</label>
 					<select id='job_category' name='job_category'>
-						<?php open_db(); echo list_job_types();  close_db(); ?>
+            <?php
+              open_db(); 
+              echo(options_for_select('Job_Types', 'Job_Type_Id', 'Desc_EN'));
+              close_db(); ?>
 					</select>
 				</div>
 				<div class='field'>
