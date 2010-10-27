@@ -36,15 +36,19 @@ function list_rows($table, $order) {
   global $dbConn, $dbResult;
 
   $sql = "select * from " . $table . " ORDER BY " . $order;
+  echo $sql;
   $dbResult = odbc_exec($dbConn, $sql);
   return odbc_num_rows($dbResult);
 }
 
-function options_for_select($table, $id_field, $value_field) {
+function options_for_select($table, $id_field, $value_field, $blank) {
   global $dbConn, $dbResult;
   $sql = "select " . $id_field . ", " . $value_field . " from " . $table . " ORDER BY " . $value_field;
   $dbResult = odbc_exec($dbConn, $sql);
   $options = "";
+  if ($blank) {
+    $options .= "<option value=''>-n/a-</option>\n"; 
+  }
   while (next_row()) {
     $options .= '<option value="' . get_column_value($id_field) . '">';
     $options .= get_column_value($value_field);
@@ -229,7 +233,7 @@ function list_tables() {
 	echo('<thead>');
 	echo('<tr>');
 	echo('<th> Table </th>');
-	echo('<th colspan="4"> Action </th>');
+	echo('<th> Action </th>');
 	echo('</tr>');
 	echo('</thead>');
 	echo('<tbody>');
@@ -238,8 +242,9 @@ function list_tables() {
 			$table_name = odbc_result($tabs,"TABLE_NAME");
 			echo('<tr>');
 			echo('<td>' . $table_name . '</td>');
-            echo('<td width="20"> <a href="list.php?table=' . $table_name . '"> List </a> </td>');
-			echo('<td width="20"> <a href="new.php?table=' . $table_name . '"> Add </a> </td>');
+            echo('<td> <a href="list.php?table=' . $table_name . '"> List </a> ');
+            echo("&nbsp;|&nbsp;");
+			echo('<a href="new.php?table=' . $table_name . '"> Add </a> </td>');
 			echo('</tr>');
 		}
 	}

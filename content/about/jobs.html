@@ -5,6 +5,11 @@ title: Jobs and Career
     include('../php/db.php');
     include('../php/form.php');
     $method = $_SERVER['REQUEST_METHOD'];
+    open_db();
+    $number_of_rows = list_rows('Job_Openings', '1');
+    echo "<br/>";
+    echo "Found: " . $number_of_rows;
+    
   ?> 
 		<title>Jobs and Career</title>
 		<script type = "text/javascript">
@@ -91,82 +96,27 @@ title: Jobs and Career
 		
 
 		<h2>Search for a Job</h2>
-		<form action='#' id='search-Jobs' method='get'>
+		<form action='jobs.php' id='search-Jobs' method='get'>
 			<fieldset id='search-Job-fields'>
 				<div class='field'>
-				  <label for='job_id'>Reference</label>
-				  <input id='job_id' size='10' type='text' />
+				  <label for='Job_Title'>Job Title</label>
+				  <input id='Job_Title' name='Job_Title' size='20' type='text' />
 				</div>
 				<div class='field'>
-				  <label for='job_desc'>Desc</label>
-				  <input id='job_desc' size='50' type='text' />
+				  <label for='Desc_EN'>Description</label>
+				  <input id='Desc_EN' name="Desc_EN" size='50' type='text' />
 				</div>
 				<div class='field'>
-				  <label for='job_skills'>Skills</label>
-				  <input id='job_skills' size='50' type='text' />
+				  <label for='Skills'>Skills</label>
+				  <input id='Skills' name="Skills" size='50' type='text' />
 				</div>
 				<div class='field'>
-					<label for='job_category'>Category</label>
-					<select id='job_category' name='job_category'>
+					<label for='Job_Type_ID'>Category</label>
+					<select id='Job_Type_ID' name='Job_Type_ID'>
             <?php
-              open_db(); 
-              echo(options_for_select('Job_Types', 'Job_Type_Id', 'Desc_EN'));
-              close_db(); ?>
-					</select>
-				</div>
-				<div class='field'>
-					<label for='day'>Date</label>
-					<select id='day' name='day'>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-						<option>11</option>
-						<option>12</option>
-						<option>13</option>
-						<option>14</option>
-						<option>15</option>
-						<option>16</option>
-						<option>17</option>
-						<option>18</option>
-						<option>19</option>
-						<option>20</option>
-						<option>21</option>
-						<option>22</option>
-						<option>23</option>
-						<option>24</option>
-						<option>25</option>
-						<option>26</option>
-						<option>27</option>
-						<option>28</option>
-						<option>29</option>
-						<option>30</option>
-						<option>31</option>
-					</select>
-					<select id='month' name='month'>
-						<option>January</option>
-						<option>February</option>
-						<option>March</option>
-						<option>April</option>
-						<option>May</option>
-						<option>June</option>
-						<option>Juli</option>
-						<option>August</option>
-						<option>September</option>
-						<option>October</option>
-						<option>November</option>
-						<option>December</option>
-					</select>
-					<select id='year' name='year'>
-						<option>2010</option>
-						<option>2011</option>
-						<option>2012</option>
+              echo(options_for_select('Job_Types', 'Job_Type_Id', 'Desc_EN',
+              TRUE));
+            ?>
 					</select>
 				</div>
 			</fieldset>
@@ -175,32 +125,30 @@ title: Jobs and Career
 				<!--<input class='clear' type='reset' value='Clear'/>   -->
 			</div>
 		</form>
-		<h2>List of jobs</h2>
-		<p>
-		  (to be filled from a database later)
-		</p>
-		<ul id='job_list'>
-		  <li>
-			<h3>Senior Web developer</h3>
-			<p class='date'>22.9.2010</p>
-			<p>
-			  As the senior developer, you will be responsible for developing
-			  and maintaining the website of AvatarHotel.
-			</p>
-			<p>
-			  Skills: XHTML, CSS, JavaScript, basic database know-how
-			</p>
-		  </li>
-		  <li>
-			<h3>Pixel Wrangler</h3>
-			<p class='date'>1.5.2010</p>
-			<p>
-			  Your job is to wrangle the pixeleated avatars into proper shape by
-			  providing an informative and entertaining, fully-immersive almost
-			  as good as being there, show &amp; trainings programme.
-			</p>
-			<p>
-			  Skills: Wrangled Pixels
-			</p>
-		  </li>
-		</ul>
+    <h2>List of jobs</h2>
+
+
+      <ul id='job_list'>
+          <?php
+             $res = next_row();
+             while ($res == TRUE) {
+                $title = get_column_value('Job_Title');
+                $desc = get_column_value('Desc_EN');
+                $skills = get_column_value('Skills');
+                $date = get_column_value('Date_Opened');
+                echo("<li>\n");
+                  echo("<h3>" . h($title) . "</h3>");
+                  echo("<p class='date'>" . $date ."</p>");
+                  echo("<p>");
+                    echo h($desc);
+                    echo("</p>");
+                  echo("<p>");
+                    echo h($skills);
+                  echo("</p>");
+                echo("</li>\n");
+                $res = next_row();
+
+             }
+             close_db();
+             ?>
+       </ul>
